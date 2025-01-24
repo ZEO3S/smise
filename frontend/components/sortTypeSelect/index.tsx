@@ -1,9 +1,9 @@
 import { PARAMS } from '@/constants/api/queryParams';
 import { SORT_TYPES } from '@/constants/components/sort';
 
-import { usePushRouteWithQueryParam } from '@/hooks/usePushRouteWithQueryParam';
+import { Select } from '@/components/common';
 
-import Select from '../common/select';
+import { usePushRouteWithQueryParam } from '@/hooks/usePushRouteWithQueryParam';
 
 export default function SortTypeSelect() {
   const { pushRoute } = usePushRouteWithQueryParam();

@@ -2,8 +2,7 @@ import Image from 'next/image';
 
 import ArrowSVG from '@/assets/svgs/arrow.svg';
 
-import Button from '@/components/common/button';
-import Text from '@/components/common/text';
+import { Button, Text } from '@/components/common';
 
 import { useJobs } from '@/hooks/useJobs';
 

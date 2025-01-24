@@ -1,6 +1,4 @@
-import Button from '@/components/common/button';
-import Spinner from '@/components/common/spinner';
-import Text from '@/components/common/text';
+import { Button, Spinner, Text } from '@/components/common';
 import { RecruitmentList } from '@/components/recruitment/components';
 import { useInitialRecruitment, useRecruitment } from '@/components/recruitment/hooks';
 

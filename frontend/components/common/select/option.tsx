@@ -8,7 +8,7 @@ interface Props {
   option: SelectOption;
 }
 
-export default function Option({ option }: Props) {
+export function Option({ option }: Props) {
   const context = useContext(SelectContext);
 
   if (!context) throw new Error('Option must be used within a SelectContextProvider');

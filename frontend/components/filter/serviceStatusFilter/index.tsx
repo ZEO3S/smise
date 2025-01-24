@@ -1,7 +1,6 @@
 import { PARAMS, SERVICE_STATUSES } from '@/constants/api/queryParams';
 
-import Radio from '@/components/common/radio';
-import Text from '@/components/common/text';
+import { Radio, Text } from '@/components/common';
 
 import { usePushRouteWithQueryParam } from '@/hooks/usePushRouteWithQueryParam';
 

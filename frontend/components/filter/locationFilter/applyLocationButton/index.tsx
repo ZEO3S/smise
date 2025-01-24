@@ -2,8 +2,7 @@ import { Location } from '@/types/api/location';
 
 import { PARAMS } from '@/constants/api/queryParams';
 
-import Button from '@/components/common/button';
-import Text from '@/components/common/text';
+import { Button, Text } from '@/components/common';
 
 import { usePushRouteWithQueryParam } from '@/hooks/usePushRouteWithQueryParam';
 

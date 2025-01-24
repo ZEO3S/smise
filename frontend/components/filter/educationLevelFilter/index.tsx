@@ -1,8 +1,7 @@
 import { EDUCATION_LEVELS } from '@/constants/api/educationLevel';
 import { PARAMS } from '@/constants/api/queryParams';
 
-import Select from '@/components/common/select';
-import Text from '@/components/common/text';
+import { Select, Text } from '@/components/common';
 
 import { usePushRouteWithQueryParam } from '@/hooks/usePushRouteWithQueryParam';
 

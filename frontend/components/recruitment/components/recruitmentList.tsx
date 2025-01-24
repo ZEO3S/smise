@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
-import Badge from '@/components/common/badge';
-import Text from '@/components/common/text';
+import { Badge, Text } from '@/components/common';
 import { Recruitment } from '@/components/recruitment/types';
 import { generateExpirationText } from '@/components/recruitment/utils';
 

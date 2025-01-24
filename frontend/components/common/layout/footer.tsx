@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import Text from '../../text';
+import { Text } from '@/components/common';
 
-export default function Footer() {
+export function Footer() {
   return (
     <footer className='flex shrink-0 w-full h-60 px-32 py-10 bg-default-color'>
       <div className='flex flex-col gap-2'>

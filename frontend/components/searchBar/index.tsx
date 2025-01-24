@@ -2,7 +2,7 @@ import MagnifyingGlassSVG from '@/assets/svgs/magnifying_glass.svg';
 
 import { PARAMS } from '@/constants/api/queryParams';
 
-import Input from '@/components/common/input';
+import { Input } from '@/components/common';
 
 import { useControlledInput } from '@/hooks/useControlledInput';
 import { usePushRouteWithQueryParam } from '@/hooks/usePushRouteWithQueryParam';

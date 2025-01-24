@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import { ReactNode } from 'react';
 
-import Layout from '@/components/common/layout';
+import { Layout } from '@/components/common';
 
 import './globals.css';
 

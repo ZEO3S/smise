@@ -1,9 +1,11 @@
+'use client';
+
 import { ComponentPropsWithoutRef } from 'react';
 
-import RadioContextProvider from './context';
-import Option from './option';
+import { RadioContextProvider } from './context';
+import { Option } from './option';
 
-export default function Radio({ children }: ComponentPropsWithoutRef<'input'>) {
+export function Radio({ children }: ComponentPropsWithoutRef<'input'>) {
   return (
     <fieldset>
       <RadioContextProvider>

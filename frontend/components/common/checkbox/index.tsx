@@ -1,9 +1,13 @@
+'use client';
+
 import Image from 'next/image';
 import { ChangeEventHandler, useState } from 'react';
 
 import WhiteCheckSVG from '@/assets/svgs/white_check.svg';
 
-import Text, { Variant as TextVariant } from '../text';
+import { Variant } from '@/types/components';
+
+import { Text } from '@/components/common';
 
 type BoxPosition = 'left' | 'right';
 
@@ -12,7 +16,7 @@ interface Props {
   label?: string;
   defaultChecked?: boolean;
   boxPosition?: BoxPosition;
-  textVariant?: TextVariant;
+  textVariant?: Variant;
   padding?: boolean;
   hover?: boolean;
   rounded?: boolean;
@@ -21,7 +25,7 @@ interface Props {
   onToggle?: () => void;
 }
 
-export default function Checkbox({
+export function Checkbox({
   value = '',
   label = '',
   defaultChecked = false,

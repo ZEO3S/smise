@@ -2,8 +2,7 @@ import { generateJobDetailId } from '@/utils/job';
 
 import { Job } from '@/types/api/jobs';
 
-import Checkbox from '@/components/common/checkbox';
-import Text from '@/components/common/text';
+import { Checkbox, Text } from '@/components/common';
 
 interface Props {
   allJobs: Array<Job> | null;

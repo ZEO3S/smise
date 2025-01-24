@@ -3,8 +3,9 @@ import { ChangeEventHandler, useContext } from 'react';
 
 import WhiteCheckSVG from '@/assets/svgs/white_check.svg';
 
-import Text from '../../text';
-import { RadioContext } from '../context/RadioContext';
+import { Text } from '@/components/common';
+
+import { RadioContext } from './context/RadioContext';
 
 interface Props {
   value: string;
@@ -12,7 +13,7 @@ interface Props {
   onChecked?: () => void;
 }
 
-export default function Option({ value, label, onChecked }: Props) {
+export function Option({ value, label, onChecked }: Props) {
   const group = useContext(RadioContext);
 
   const handleChangeRadio: ChangeEventHandler<HTMLInputElement> = (event) => {

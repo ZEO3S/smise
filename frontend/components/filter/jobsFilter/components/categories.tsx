@@ -4,8 +4,7 @@ import ArrowSVG from '@/assets/svgs/arrow.svg';
 
 import { Job } from '@/types/api/jobs';
 
-import Button from '@/components/common/button';
-import Text from '@/components/common/text';
+import { Button, Text } from '@/components/common';
 
 interface Props {
   allJobs: Array<Job>;

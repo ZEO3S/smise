@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { PARAMS } from '@/constants/api/queryParams';
 import { EXPERIENCE_LEVEL_RANGE, generateExperienceLevelText } from '@/constants/components/experienceLevel';
 
-import Slider from '@/components/common/slider';
-import Text from '@/components/common/text';
+import { Slider, Text } from '@/components/common';
 
 import { usePushRouteWithQueryParam } from '@/hooks/usePushRouteWithQueryParam';
 

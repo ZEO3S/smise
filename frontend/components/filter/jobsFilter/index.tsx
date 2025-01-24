@@ -2,9 +2,7 @@ import Image from 'next/image';
 
 import CloseSVG from '@/assets/svgs/close.svg';
 
-import Button from '@/components/common/button';
-import Modal from '@/components/common/modal';
-import Text from '@/components/common/text';
+import { Button, Modal, Text } from '@/components/common';
 import {
   ApplyJobsButton,
   Categories,

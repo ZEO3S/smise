@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import { PropsWithChildren, useRef } from 'react';
 
@@ -5,9 +7,9 @@ import ArrowSVG from '@/assets/svgs/arrow.svg';
 
 import { SelectOption } from '@/types/component/select';
 
-import Button from '@/components/common/button';
+import { Button } from '@/components/common';
+import { Option } from '@/components/common/select/option';
 import { Options } from '@/components/common/select/options';
-import Option from '@/components/common/select/options/option';
 
 import { useClickOutsideHandler } from '@/hooks/useClickOutsideHandler';
 import { useOpenDirection } from '@/hooks/useOpenDirection';
@@ -18,7 +20,7 @@ interface Props extends PropsWithChildren {
   onChange?: (selectedOption?: SelectOption) => void;
 }
 
-export default function Select({ initialValue = null, children, onChange }: Props) {
+export function Select({ initialValue = null, children, onChange }: Props) {
   const ref = useRef<HTMLFieldSetElement | null>(null);
   const { isOpen, selectedOption, closeSelect, toggleSelect, updateSelectedOption } = useSelect(initialValue);
   const { openDirection, updateOpenDirection } = useOpenDirection<HTMLFieldSetElement>(ref);

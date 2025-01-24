@@ -7,8 +7,7 @@ import { isValidDistrict } from '@/types/guards/queryParams';
 
 import { LOCATIONS } from '@/constants/components/location';
 
-import Button from '@/components/common/button';
-import Text from '@/components/common/text';
+import { Button, Text } from '@/components/common';
 
 interface Props {
   clearSelectedDistrict: () => void;

@@ -1,5 +1,4 @@
-import Modal from '@/components/common/modal';
-import Text from '@/components/common/text';
+import { Modal, Text } from '@/components/common';
 import ApplyLocationButton from '@/components/filter/locationFilter/applyLocationButton';
 import CitiesCheckbox from '@/components/filter/locationFilter/citiesCheckbox';
 import DistrictSelect from '@/components/filter/locationFilter/districtSelect';

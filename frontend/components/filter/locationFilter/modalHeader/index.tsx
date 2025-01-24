@@ -2,8 +2,7 @@ import Image from 'next/image';
 
 import CloseSVG from '@/assets/svgs/close.svg';
 
-import Button from '@/components/common/button';
-import Text from '@/components/common/text';
+import { Button, Text } from '@/components/common';
 
 interface Props {
   closeModal: () => void;

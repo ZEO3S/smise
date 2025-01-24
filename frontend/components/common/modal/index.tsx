@@ -1,3 +1,5 @@
+'use client';
+
 import { PropsWithChildren, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -8,7 +10,7 @@ interface Props extends PropsWithChildren {
   onClose: () => void;
 }
 
-export default function Modal({ openState, children, onClose }: Props) {
+export function Modal({ openState, children, onClose }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useClickOutsideHandler<HTMLDivElement>(ref, onClose);

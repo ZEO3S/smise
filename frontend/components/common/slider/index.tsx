@@ -1,6 +1,8 @@
+'use client';
+
 import { MouseEvent, useRef } from 'react';
 
-import Text from '../text';
+import { Text } from '@/components/common';
 
 interface Value {
   start: number;
@@ -17,7 +19,7 @@ interface Props {
   onEndChange: (end: number) => void;
 }
 
-export default function Slider({ value, min, max, step, onMouseUp, onStartChange, onEndChange }: Props) {
+export function Slider({ value, min, max, step, onMouseUp, onStartChange, onEndChange }: Props) {
   const sliderRef = useRef<HTMLDivElement>(null);
   const startControllerPosition = `${(value.start / max) * 100}%`;
   const endControllerPosition = `${(value.end / max) * 100}%`;

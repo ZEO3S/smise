@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react';
 
 import { SelectOption } from '@/types/component/select';
 
-import SelectContextProvider from '@/components/common/select/context';
+import { SelectContextProvider } from '@/components/common/select/context';
 
 interface Props extends PropsWithChildren {
   selectedOption: SelectOption | null;
