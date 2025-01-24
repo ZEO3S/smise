@@ -29,7 +29,7 @@ export async function GET(request: Request) {
     keyword,
   );
 
-  const RECRUITMENT = Array.from({ length: 40 }, (_, index) => {
+  const RECRUITMENT = Array.from({ length: 80 }, (_, index) => {
     return {
       id: index,
       serviceType: '산업기능요원',
@@ -45,7 +45,7 @@ export async function GET(request: Request) {
   });
 
   const data = {
-    recruitment: RECRUITMENT.slice(page * size, size * (page + 1)),
+    recruitment: RECRUITMENT.slice(0, size * (page + 1)),
     page: page,
     totalPages: Math.ceil(RECRUITMENT.length / size),
   };

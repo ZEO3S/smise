@@ -1,12 +1,13 @@
-import { useRecruitment } from '@/hooks/useRecruitment';
-
-import Button from '../common/button';
-import Spinner from '../common/spinner';
-import Text from '../common/text';
-import RecruitmentList from './recruitmentList';
+import Button from '@/components/common/button';
+import Spinner from '@/components/common/spinner';
+import Text from '@/components/common/text';
+import { RecruitmentList } from '@/components/recruitment/components';
+import { useInitialRecruitment, useRecruitment } from '@/components/recruitment/hooks';
 
 export default function Recruitment() {
   const { recruitment, isLoading, error, hasNext, fetchNextPage } = useRecruitment();
+
+  useInitialRecruitment();
 
   if (isLoading) {
     return (

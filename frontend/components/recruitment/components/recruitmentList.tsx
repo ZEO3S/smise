@@ -1,17 +1,15 @@
 import Link from 'next/link';
 
-import { generateExpirationText } from '@/utils/expiration';
-
-import { Recruitment } from '@/types/api/recruitment';
-
-import Badge from '../../common/badge';
-import Text from '../../common/text';
+import Badge from '@/components/common/badge';
+import Text from '@/components/common/text';
+import { Recruitment } from '@/components/recruitment/types';
+import { generateExpirationText } from '@/components/recruitment/utils';
 
 interface Props {
   recruitment: Recruitment[] | null;
 }
 
-export default function RecruitmentList({ recruitment }: Props) {
+export function RecruitmentList({ recruitment }: Props) {
   return (
     <ul className='flex-1'>
       {recruitment?.map(

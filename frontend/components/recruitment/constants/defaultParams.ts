@@ -1,4 +1,4 @@
-import { DefaultRequestRecruitmentParams } from '@/types/api/recruitment';
+import { DefaultRequestRecruitmentParams } from '@/components/recruitment/types';
 
 export const DEFAULT_PARAMS: DefaultRequestRecruitmentParams = {
   SERVICE_TYPE: null,
