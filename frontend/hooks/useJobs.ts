@@ -1,21 +1,21 @@
-import { https } from '@/apis/fetch';
+import { useSearchParams } from 'next/navigation';
 
-import { ResponseJobs } from '@/types/api/jobs';
-import { ServiceType } from '@/types/api/serviceType';
+import { isValidJobs } from '@/types/guards/queryParams';
 
-import { JOBS_URL } from '@/constants/api/url';
+import { PARAMS } from '@/constants/api/queryParams';
 
-import { useFetch } from './useFetch';
+export const useJobs = () => {
+  const searchParams = useSearchParams();
+  const jobsQueryParam = searchParams.get(PARAMS.JOBS);
+  const jobsWithCategories = jobsQueryParam?.split('&');
+  const jobs = jobsWithCategories?.map((jobsWithCategory) => {
+    const jobsWithCategoryList = jobsWithCategory.split(',');
 
-const generateUrl = (selectedServiceType: ServiceType | null) => {
-  return `${JOBS_URL}?serviceType=${selectedServiceType ?? '전체'}`;
-};
-export const useJobs = (selectedServiceType: ServiceType | null) => {
-  const url = generateUrl(selectedServiceType);
-  const { data, isLoading, error } = useFetch<string, ResponseJobs>({
-    fetch: () => https.get<ResponseJobs>(url),
-    key: url,
+    return {
+      category: jobsWithCategoryList.shift(),
+      details: jobsWithCategoryList,
+    };
   });
 
-  return { jobs: data?.jobs, isLoading, error };
+  return isValidJobs(jobs) ? jobs : null;
 };

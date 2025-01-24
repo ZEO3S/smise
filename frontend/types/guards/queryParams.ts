@@ -1,4 +1,5 @@
 import { EducationLevel } from '@/types/api/educationLevel';
+import { Job } from '@/types/api/jobs';
 import { District, Location } from '@/types/api/location';
 import { ServiceStatus } from '@/types/api/serviceStatus';
 import { ServiceType } from '@/types/api/serviceType';
@@ -43,5 +44,14 @@ export const isValidLocations = (value: unknown): value is Array<Location> => {
       (location) =>
         typeof location === 'object' && Object.hasOwn(location, 'district') && Object.hasOwn(location, 'cities'),
     )
+  );
+};
+
+export const isValidJobs = (value: unknown): value is Array<Job> => {
+  const jobs = value as Array<Job>;
+
+  return (
+    Array.isArray(jobs) &&
+    jobs.every((job) => typeof job === 'object' && Object.hasOwn(job, 'category') && Object.hasOwn(job, 'details'))
   );
 };

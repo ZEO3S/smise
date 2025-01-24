@@ -1,6 +1,6 @@
 import Modal from '@/components/common/modal';
 import Text from '@/components/common/text';
-import ApplyButton from '@/components/filter/locationFilter/applyButton';
+import ApplyLocationButton from '@/components/filter/locationFilter/applyLocationButton';
 import CitiesCheckbox from '@/components/filter/locationFilter/citiesCheckbox';
 import DistrictSelect from '@/components/filter/locationFilter/districtSelect';
 import ModalHeader from '@/components/filter/locationFilter/modalHeader';
@@ -51,7 +51,7 @@ export default function LocationFilter() {
           </div>
           <div className='flex justify-between'>
             <ResetButton clearFilterLocations={clearFilterLocations} />
-            <ApplyButton locations={selectedLocations} onCloseModal={closeModal} />
+            <ApplyLocationButton locations={selectedLocations} onCloseModal={closeModal} />
           </div>
         </div>
       </Modal>

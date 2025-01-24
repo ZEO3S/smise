@@ -1,21 +1,13 @@
 import { useState } from 'react';
 
-import { Job } from '@/types/api/jobs';
+import { useJobs } from '@/hooks/useJobs';
 
-export const useCheckedDetails = (jobs: Array<Job> | null) => {
+export const useCheckedDetails = () => {
+  const jobs = useJobs();
   const defaultCheckedDetails = jobs
-    ? jobs.flatMap((job) => {
-        return job.details.map((detail) => {
-          return `${job.category}-${detail}`;
-        });
-      })
+    ? jobs.flatMap((job) => job.details.map((detail) => `${job.category}-${detail}`))
     : null;
   const [checkedDetails, setCheckedDetails] = useState<Array<string> | null>(defaultCheckedDetails);
-
-  const generateDetailKey = (category: string, detail: string) => {
-    return `${category}-${detail}`;
-  };
-
   const addCheckedDetail = (checkedDetail: string) => {
     setCheckedDetails((prev) => (prev ? [...prev, checkedDetail] : [checkedDetail]));
   };
@@ -40,7 +32,6 @@ export const useCheckedDetails = (jobs: Array<Job> | null) => {
 
   return {
     checkedDetails,
-    generateDetailKey,
     addCheckedDetail,
     deleteCheckedDetail,
     clearCheckedDetails,

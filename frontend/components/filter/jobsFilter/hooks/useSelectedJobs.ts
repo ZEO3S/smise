@@ -2,7 +2,10 @@ import { useState } from 'react';
 
 import { Job } from '@/types/api/jobs';
 
-export const useSelectedJobs = (jobs: Array<Job> | null) => {
+import { useJobs } from '@/hooks/useJobs';
+
+export const useSelectedJobs = () => {
+  const jobs = useJobs();
   const [selectedJobs, setSelectedJobs] = useState<Array<Job> | null>(jobs);
 
   const addSelectedJobs = (selectedCategory: string | null, detail: string) => {

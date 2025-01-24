@@ -12,7 +12,7 @@ interface Props {
   onCloseModal: () => void;
 }
 
-export default function ApplyButton({ locations, onCloseModal }: Props) {
+export default function ApplyLocationButton({ locations, onCloseModal }: Props) {
   const { pushRoute, deleteQueryParam } = usePushRouteWithQueryParam();
 
   const applyLocation = () => {

@@ -1,86 +1,37 @@
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
 
-import ArrowSVG from '@/assets/svgs/arrow.svg';
 import CloseSVG from '@/assets/svgs/close.svg';
 
-import { Job } from '@/types/api/jobs';
-import { isValidServiceType } from '@/types/guards/queryParams';
-
-import { PARAMS } from '@/constants/api/queryParams';
-
 import Button from '@/components/common/button';
-import Checkbox from '@/components/common/checkbox';
 import Modal from '@/components/common/modal';
 import Text from '@/components/common/text';
+import {
+  ApplyJobsButton,
+  Categories,
+  Details,
+  JobsModalOpenButton,
+  ResetJobsButton,
+} from '@/components/filter/jobsFilter/components';
+import {
+  useAllJobs,
+  useCheckedDetails,
+  useSelectedCategory,
+  useSelectedJobs,
+} from '@/components/filter/jobsFilter/hooks';
 
-import { useCheckedDetails } from '@/hooks/useCheckedDetails';
-import { useJobs } from '@/hooks/useJobs';
 import { useModal } from '@/hooks/useModal';
-import { useSelectedCategory } from '@/hooks/useSelectedCategory';
-import { useSelectedJobs } from '@/hooks/useSelectedJobs';
 
-interface Props {
-  selectedDefaultJobs: Array<Job> | null;
-  updateJobs: (selectedJob: Array<Job> | null) => void;
-}
-
-export default function JobsFilter({ selectedDefaultJobs, updateJobs }: Props) {
-  const { isOpen, openModal, closeModal } = useModal();
-  const searchParams = useSearchParams();
-  const serviceType = searchParams.get(PARAMS.SERVICE_TYPE);
-  const { jobs } = useJobs(isValidServiceType(serviceType) ? serviceType : null);
-  const { selectedCategory, updateSelectedCategory, clearSelectedCategory } = useSelectedCategory();
+export default function JobsFilter() {
+  const { allJobs } = useAllJobs();
   const { selectedJobs, addSelectedJobs, deleteSelectedJobs, clearSelectedJobs, initializeSelectedJobs } =
-    useSelectedJobs(selectedDefaultJobs);
-  const {
-    checkedDetails,
-    generateDetailKey,
-    addCheckedDetail,
-    deleteCheckedDetail,
-    clearCheckedDetails,
-    initializeCheckedDetails,
-  } = useCheckedDetails(selectedDefaultJobs);
+    useSelectedJobs();
+  const { selectedCategory, clearSelectedCategory, updateSelectedCategory } = useSelectedCategory();
+  const { checkedDetails, addCheckedDetail, deleteCheckedDetail, clearCheckedDetails, initializeCheckedDetails } =
+    useCheckedDetails();
 
-  const detailsLength = selectedDefaultJobs
-    ? selectedDefaultJobs.reduce((acc, cur) => {
-        return acc + cur.details.length;
-      }, 0)
-    : 0;
+  const { isOpen, openModal, closeModal } = useModal();
 
-  const handleClick전체 = () => {
-    clearSelectedCategory();
-  };
-
-  const handleClickButton = (category: string) => {
-    updateSelectedCategory(category);
-  };
-
-  const addDetail = (job: string, checkedJob: string) => {
-    addCheckedDetail(checkedJob);
-    addSelectedJobs(selectedCategory, job);
-  };
-
-  const deleteJob = (selectedCategory: string, job: string) => {
-    const targetCheckedJob = generateDetailKey(selectedCategory, job);
-    deleteCheckedDetail(targetCheckedJob);
-
-    deleteSelectedJobs(selectedCategory, job);
-  };
-
-  const resetJob = () => {
-    clearSelectedCategory();
-    clearSelectedJobs();
-    clearCheckedDetails();
-  };
-
-  const applyKob = () => {
-    clearSelectedCategory();
-    updateJobs(selectedJobs);
-    closeModal();
-  };
-
-  const onCloseModal = () => {
+  const onModalClose = () => {
     clearSelectedCategory();
     initializeSelectedJobs();
     initializeCheckedDetails();
@@ -92,28 +43,8 @@ export default function JobsFilter({ selectedDefaultJobs, updateJobs }: Props) {
       <div className='py-2'>
         <Text variant='semi-title' content='직무' />
       </div>
-      <Button className='flex gap-1 w-full py-2 hover:bg-default-color hover:bg-opacity-10' onClick={openModal}>
-        <>
-          <Text
-            content={
-              selectedDefaultJobs && Boolean(selectedDefaultJobs.length) ? selectedDefaultJobs[0].category : '전체'
-            }
-          />
-          {selectedDefaultJobs && Boolean(selectedDefaultJobs.length) && (
-            <>
-              <Text content='·' />
-              <Text content={selectedDefaultJobs[0].details[0]} />
-              {Boolean(detailsLength - 1) && <Text content={`외 ${detailsLength - 1}`} />}
-            </>
-          )}
-          <Image
-            className='ml-1 -rotate-90 select-none border border-default-color rounded'
-            src={ArrowSVG}
-            alt='모달 열기 버튼'
-          />
-        </>
-      </Button>
-      <Modal openState={isOpen} onClose={onCloseModal}>
+      <JobsModalOpenButton openModal={openModal} />
+      <Modal openState={isOpen} onClose={onModalClose}>
         <div className='flex flex-col gap-6 w-[660px] p-6 rounded-lg bg-white'>
           <div className='flex justify-between'>
             <Text variant='title' content='직무' />
@@ -122,70 +53,32 @@ export default function JobsFilter({ selectedDefaultJobs, updateJobs }: Props) {
             </Button>
           </div>
           <div className='flex gap-2 h-[360px]'>
-            <ul className='overflow-y-scroll'>
-              <li key='전체'>
-                <Button
-                  className='flex justify-between w-60 p-4 cursor-pointer rounded hover:bg-default-color hover:bg-opacity-10'
-                  onClick={handleClick전체}
-                >
-                  <Text variant='full-base' content='전체' />
-                </Button>
-              </li>
-              {jobs?.map(({ category }) => {
-                return (
-                  <li key={category}>
-                    <Button
-                      className='flex justify-between w-60 p-4 cursor-pointer rounded hover:bg-default-color hover:bg-opacity-10'
-                      onClick={() => handleClickButton(category)}
-                    >
-                      <Text variant='full-base' content={category} />
-                      <Image className='ml-1 -rotate-90 select-none' src={ArrowSVG} alt='상세 직무 열기 버튼' />
-                    </Button>
-                  </li>
-                );
-              })}
-            </ul>
-            {selectedCategory ? (
-              <ul className='flex-1 overflow-y-scroll'>
-                {jobs
-                  ?.find((job) => job.category === selectedCategory)
-                  ?.details.map((job) => {
-                    const key = generateDetailKey(selectedCategory, job);
-
-                    return (
-                      <li key={key}>
-                        <Checkbox
-                          value={job}
-                          label={job}
-                          defaultChecked={checkedDetails?.includes(key)}
-                          boxPosition='right'
-                          textVariant='full-base'
-                          onCheck={() => addDetail(job, key)}
-                          onUnCheck={() => deleteJob(selectedCategory, job)}
-                          padding
-                          hover
-                          rounded
-                        />
-                      </li>
-                    );
-                  })}
-              </ul>
-            ) : (
-              <div className='flex flex-col justify-center items-center flex-1'>
-                <Text variant='full-base' opacity={70} content='원하는 직무를 선택하고 적용을 눌러 확인하세요' />
-              </div>
-            )}
+            <Categories
+              allJobs={allJobs}
+              clearSelectedCategory={clearSelectedCategory}
+              updateSelectedCategory={updateSelectedCategory}
+            />
+            <Details
+              allJobs={allJobs}
+              selectedCategory={selectedCategory}
+              checkedDetails={checkedDetails}
+              addSelectedJobs={addSelectedJobs}
+              deleteSelectedJobs={deleteSelectedJobs}
+              addCheckedDetail={addCheckedDetail}
+              deleteCheckedDetail={deleteCheckedDetail}
+            />
           </div>
           <div className='flex justify-between'>
-            <Button
-              className='py-1 px-4 rounded border border-default-color border-opacity-30 hover:bg-default-color hover:bg-opacity-10'
-              onClick={resetJob}
-            >
-              <Text variant='middle-title' opacity={70} content='초기화' />
-            </Button>
-            <Button className='bg-green-800 py-1 px-4 rounded' onClick={applyKob}>
-              <Text variant='middle-title' color='white' content='적용' />
-            </Button>
+            <ResetJobsButton
+              clearSelectedCategory={clearSelectedCategory}
+              clearSelectedJobs={clearSelectedJobs}
+              clearCheckedDetails={clearCheckedDetails}
+            />
+            <ApplyJobsButton
+              selectedJobs={selectedJobs}
+              clearSelectedCategory={clearSelectedCategory}
+              closeModal={closeModal}
+            />
           </div>
         </div>
       </Modal>
