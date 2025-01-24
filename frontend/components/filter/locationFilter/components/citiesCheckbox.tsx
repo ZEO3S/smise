@@ -13,7 +13,7 @@ interface Props {
   deleteCity: (id: string) => void;
 }
 
-export default function CitiesCheckbox({ cities, district, addCity, deleteCity }: Props) {
+export function CitiesCheckbox({ cities, district, addCity, deleteCity }: Props) {
   return (
     <ul className='flex-1 overflow-y-scroll'>
       {LOCATIONS[district].map((city) => {

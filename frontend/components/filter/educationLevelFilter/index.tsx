@@ -2,7 +2,7 @@ import { EDUCATION_LEVELS, PARAMS } from '@/constants/api';
 
 import { Select, Text } from '@/components/common';
 
-import { usePushRouteWithQueryParam } from '@/hooks/usePushRouteWithQueryParam';
+import { usePushRouteWithQueryParam } from '@/hooks';
 
 export default function EducationLevelFilter() {
   const { pushRoute } = usePushRouteWithQueryParam();

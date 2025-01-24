@@ -2,7 +2,7 @@ import { PARAMS, SERVICE_TYPES } from '@/constants/api';
 
 import { Radio, Text } from '@/components/common';
 
-import { usePushRouteWithQueryParam } from '@/hooks/usePushRouteWithQueryParam';
+import { usePushRouteWithQueryParam } from '@/hooks';
 
 export default function ServiceTypesFilter() {
   const { pushRoute } = usePushRouteWithQueryParam();

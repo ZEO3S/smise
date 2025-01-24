@@ -2,7 +2,7 @@ import { PARAMS, SORT_TYPES } from '@/constants/api';
 
 import { Select } from '@/components/common';
 
-import { usePushRouteWithQueryParam } from '@/hooks/usePushRouteWithQueryParam';
+import { usePushRouteWithQueryParam } from '@/hooks';
 
 export function SortTypeSelect() {
   const { pushRoute } = usePushRouteWithQueryParam();

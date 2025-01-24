@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useJobs } from '@/hooks/useJobs';
+import { useJobs } from '@/components/filter/jobsFilter/hooks';
 
 export const useCheckedDetails = () => {
   const jobs = useJobs();

@@ -8,12 +8,11 @@ import { ArrowSVG } from '@/assets/svgs';
 import { SelectOption } from '@/types/component/select';
 
 import { Button } from '@/components/common';
+import { useOpenDirection, useSelect } from '@/components/common/select/hooks';
 import { Option } from '@/components/common/select/option';
 import { Options } from '@/components/common/select/options';
 
-import { useClickOutsideHandler } from '@/hooks/useClickOutsideHandler';
-import { useOpenDirection } from '@/hooks/useOpenDirection';
-import { useSelect } from '@/hooks/useSelect';
+import { useClickOutsideHandler } from '@/hooks';
 
 interface Props extends PropsWithChildren {
   initialValue?: SelectOption | null;

@@ -2,7 +2,7 @@ import { PARAMS, SERVICE_STATUSES } from '@/constants/api';
 
 import { Radio, Text } from '@/components/common';
 
-import { usePushRouteWithQueryParam } from '@/hooks/usePushRouteWithQueryParam';
+import { usePushRouteWithQueryParam } from '@/hooks';
 
 export default function ServiceStatusFilter() {
   const { pushRoute } = usePushRouteWithQueryParam();

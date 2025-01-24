@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { CloseSVG } from '@/assets/svgs';
 
 import { Button, Modal, Text } from '@/components/common';
+import { useModal } from '@/components/common/modal/hooks';
 import {
   ApplyJobsButton,
   Categories,
@@ -16,8 +17,6 @@ import {
   useSelectedCategory,
   useSelectedJobs,
 } from '@/components/filter/jobsFilter/hooks';
-
-import { useModal } from '@/hooks/useModal';
 
 export default function JobsFilter() {
   const { allJobs } = useAllJobs();

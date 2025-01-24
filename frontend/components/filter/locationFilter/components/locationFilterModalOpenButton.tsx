@@ -11,7 +11,7 @@ interface Props {
   openModal: () => void;
 }
 
-export default function ModalOpenButton({ locations, openModal }: Props) {
+export function LocationFilterModalOpenButton({ locations, openModal }: Props) {
   const citiesLength = locations
     ? locations.reduce((acc, cur) => {
         return acc + cur.cities.length;

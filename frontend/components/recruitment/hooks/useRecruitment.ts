@@ -4,10 +4,9 @@ import { PARAMS, RECRUITMENT_URL } from '@/constants/api';
 
 import type { ResponseRecruitment } from '@/components/recruitment/types';
 
-import { useFetch } from '@/hooks/useFetch';
-import { usePage } from '@/hooks/usePage';
-import { usePushRouteWithQueryParam } from '@/hooks/usePushRouteWithQueryParam';
-import { useQueryParams } from '@/hooks/useQueryParams';
+import { useFetch, usePushRouteWithQueryParam, useQueryParams } from '@/hooks';
+
+import { usePage } from './usePage';
 
 export const useRecruitment = () => {
   const queryParams = useQueryParams();

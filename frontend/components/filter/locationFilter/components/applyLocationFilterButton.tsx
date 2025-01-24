@@ -4,14 +4,14 @@ import { PARAMS } from '@/constants/api';
 
 import { Button, Text } from '@/components/common';
 
-import { usePushRouteWithQueryParam } from '@/hooks/usePushRouteWithQueryParam';
+import { usePushRouteWithQueryParam } from '@/hooks';
 
 interface Props {
   locations: Array<Location> | null;
   onCloseModal: () => void;
 }
 
-export default function ApplyLocationButton({ locations, onCloseModal }: Props) {
+export function ApplyLocationFilterButton({ locations, onCloseModal }: Props) {
   const { pushRoute, deleteQueryParam } = usePushRouteWithQueryParam();
 
   const applyLocation = () => {

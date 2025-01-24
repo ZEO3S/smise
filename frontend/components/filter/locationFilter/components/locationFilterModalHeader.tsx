@@ -8,7 +8,7 @@ interface Props {
   closeModal: () => void;
 }
 
-export default function ModalHeader({ closeModal }: Props) {
+export function LocationFilterModalHeader({ closeModal }: Props) {
   return (
     <div className='flex justify-between'>
       <Text variant='title' content='지역' />

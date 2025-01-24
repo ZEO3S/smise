@@ -4,7 +4,7 @@ import { PARAMS } from '@/constants/api';
 
 import { Button, Text } from '@/components/common';
 
-import { usePushRouteWithQueryParam } from '@/hooks/usePushRouteWithQueryParam';
+import { usePushRouteWithQueryParam } from '@/hooks';
 
 interface Props {
   selectedJobs: Array<Job> | null;

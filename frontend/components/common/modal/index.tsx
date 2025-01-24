@@ -3,7 +3,7 @@
 import { PropsWithChildren, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
-import { useClickOutsideHandler } from '@/hooks/useClickOutsideHandler';
+import { useClickOutsideHandler } from '@/hooks';
 
 interface Props extends PropsWithChildren {
   openState: boolean;

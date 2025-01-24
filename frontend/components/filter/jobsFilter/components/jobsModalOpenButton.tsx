@@ -3,8 +3,7 @@ import Image from 'next/image';
 import { ArrowSVG } from '@/assets/svgs';
 
 import { Button, Text } from '@/components/common';
-
-import { useJobs } from '@/hooks/useJobs';
+import { useJobs } from '@/components/filter/jobsFilter/hooks/useJobs';
 
 interface Props {
   openModal: () => void;

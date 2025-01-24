@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Job } from '@/types/api/jobs';
 
-import { useJobs } from '@/hooks/useJobs';
+import { useJobs } from '@/components/filter/jobsFilter/hooks';
 
 export const useSelectedJobs = () => {
   const jobs = useJobs();

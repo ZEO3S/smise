@@ -1,14 +1,14 @@
 import { Modal, Text } from '@/components/common';
-import ApplyLocationButton from '@/components/filter/locationFilter/applyLocationButton';
-import CitiesCheckbox from '@/components/filter/locationFilter/citiesCheckbox';
-import DistrictSelect from '@/components/filter/locationFilter/districtSelect';
-import ModalHeader from '@/components/filter/locationFilter/modalHeader';
-import ModalOpenButton from '@/components/filter/locationFilter/modalOpenButton';
-import ResetButton from '@/components/filter/locationFilter/resetButton';
-
-import { useFilterLocations } from '@/hooks/useFilterLocations';
-import { useLocations } from '@/hooks/useLocations';
-import { useModal } from '@/hooks/useModal';
+import { useModal } from '@/components/common/modal/hooks';
+import {
+  ApplyLocationFilterButton,
+  CitiesCheckbox,
+  DistrictSelect,
+  LocationFilterModalHeader,
+  LocationFilterModalOpenButton,
+  ResetLocationFilterButton,
+} from '@/components/filter/locationFilter/components';
+import { useFilterLocations, useLocations } from '@/components/filter/locationFilter/hooks';
 
 export default function LocationFilter() {
   const locations = useLocations();
@@ -29,10 +29,10 @@ export default function LocationFilter() {
       <div className='py-2'>
         <Text variant='semi-title' content='지역' />
       </div>
-      <ModalOpenButton locations={locations} openModal={openModal} />
+      <LocationFilterModalOpenButton locations={locations} openModal={openModal} />
       <Modal openState={isOpen} onClose={closeModal}>
         <div className='flex flex-col gap-6 w-[660px] p-6 rounded-lg bg-white'>
-          <ModalHeader closeModal={closeModal} />
+          <LocationFilterModalHeader closeModal={closeModal} />
           <div className='flex gap-2 h-[360px]'>
             <DistrictSelect clearSelectedDistrict={clearSelectedDistrict} updateDistrict={updateDistrict} />
             {selectedDistrict ? (
@@ -49,8 +49,8 @@ export default function LocationFilter() {
             )}
           </div>
           <div className='flex justify-between'>
-            <ResetButton clearFilterLocations={clearFilterLocations} />
-            <ApplyLocationButton locations={selectedLocations} onCloseModal={closeModal} />
+            <ResetLocationFilterButton clearFilterLocations={clearFilterLocations} />
+            <ApplyLocationFilterButton locations={selectedLocations} onCloseModal={closeModal} />
           </div>
         </div>
       </Modal>

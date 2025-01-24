@@ -4,7 +4,7 @@ import { PARAMS } from '@/constants/api';
 
 import { DEFAULT_PARAMS } from '@/components/recruitment/constants';
 
-import { usePushRouteWithQueryParam } from '@/hooks/usePushRouteWithQueryParam';
+import { usePushRouteWithQueryParam } from '@/hooks';
 
 export const useInitialRecruitment = () => {
   const { pushRoute, deleteQueryParam } = usePushRouteWithQueryParam();

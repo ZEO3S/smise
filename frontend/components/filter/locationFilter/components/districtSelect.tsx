@@ -14,7 +14,7 @@ interface Props {
   updateDistrict: (district: District) => void;
 }
 
-export default function DistrictSelect({ clearSelectedDistrict, updateDistrict }: Props) {
+export function DistrictSelect({ clearSelectedDistrict, updateDistrict }: Props) {
   const handleClickAllLocations = () => clearSelectedDistrict();
 
   const handleClickButton = (district: string) => {

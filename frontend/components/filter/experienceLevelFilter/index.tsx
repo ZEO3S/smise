@@ -5,7 +5,7 @@ import { EXPERIENCE_LEVEL_RANGE, generateExperienceLevelText } from '@/constants
 
 import { Slider, Text } from '@/components/common';
 
-import { usePushRouteWithQueryParam } from '@/hooks/usePushRouteWithQueryParam';
+import { usePushRouteWithQueryParam } from '@/hooks';
 
 export default function ExperienceLevelFilter() {
   const [value, setValue] = useState({
