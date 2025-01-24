@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import ArrowSVG from '@/assets/svgs/arrow.svg';
+import { ArrowSVG } from '@/assets/svgs';
 
 import { District } from '@/types/api/location';
 import { isValidDistrict } from '@/types/guards/queryParams';

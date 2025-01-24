@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { PropsWithChildren, useRef } from 'react';
 
-import ArrowSVG from '@/assets/svgs/arrow.svg';
+import { ArrowSVG } from '@/assets/svgs';
 
 import { SelectOption } from '@/types/component/select';
 

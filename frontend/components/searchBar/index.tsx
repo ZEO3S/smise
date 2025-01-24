@@ -1,4 +1,4 @@
-import MagnifyingGlassSVG from '@/assets/svgs/magnifying_glass.svg';
+import { MagnifyingGlassSVG } from '@/assets/svgs';
 
 import { PARAMS } from '@/constants/api';
 

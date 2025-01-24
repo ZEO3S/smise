@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import ArrowSVG from '@/assets/svgs/arrow.svg';
+import { ArrowSVG } from '@/assets/svgs';
 
 import { Location } from '@/types/api/location';
 

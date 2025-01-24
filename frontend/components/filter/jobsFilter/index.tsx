@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import CloseSVG from '@/assets/svgs/close.svg';
+import { CloseSVG } from '@/assets/svgs';
 
 import { Button, Modal, Text } from '@/components/common';
 import {

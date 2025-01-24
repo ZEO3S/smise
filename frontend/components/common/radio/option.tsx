@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { ChangeEventHandler, useContext } from 'react';
 
-import WhiteCheckSVG from '@/assets/svgs/white_check.svg';
+import { WhiteCheckSVG } from '@/assets/svgs';
 
 import { Text } from '@/components/common';
 
