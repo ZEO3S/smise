@@ -1,4 +1,4 @@
-import { PARAMS } from '@/constants/api/queryParams';
+import { PARAMS } from '@/constants/api';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

@@ -2,7 +2,7 @@ import { useSearchParams } from 'next/navigation';
 
 import { isValidJobs } from '@/types/guards/queryParams';
 
-import { PARAMS } from '@/constants/api/queryParams';
+import { PARAMS } from '@/constants/api';
 
 export const useJobs = () => {
   const searchParams = useSearchParams();

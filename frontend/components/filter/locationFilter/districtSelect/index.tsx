@@ -5,7 +5,7 @@ import ArrowSVG from '@/assets/svgs/arrow.svg';
 import { District } from '@/types/api/location';
 import { isValidDistrict } from '@/types/guards/queryParams';
 
-import { LOCATIONS } from '@/constants/components/location';
+import { LOCATIONS } from '@/constants/api';
 
 import { Button, Text } from '@/components/common';
 

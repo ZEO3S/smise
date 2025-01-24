@@ -2,7 +2,7 @@ import { useSearchParams } from 'next/navigation';
 
 import { isValidServiceStatus } from '@/types/guards/queryParams';
 
-import { PARAMS } from '@/constants/api/queryParams';
+import { PARAMS } from '@/constants/api';
 
 export const useServiceStatus = () => {
   const searchParams = useSearchParams();

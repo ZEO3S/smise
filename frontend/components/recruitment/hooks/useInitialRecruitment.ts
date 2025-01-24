@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 
-import { PARAMS } from '@/constants/api/queryParams';
+import { PARAMS } from '@/constants/api';
 
 import { DEFAULT_PARAMS } from '@/components/recruitment/constants';
 

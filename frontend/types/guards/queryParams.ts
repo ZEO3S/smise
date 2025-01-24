@@ -5,9 +5,7 @@ import { ServiceStatus } from '@/types/api/serviceStatus';
 import { ServiceType } from '@/types/api/serviceType';
 import { Sort } from '@/types/api/sort';
 
-import { EDUCATION_LEVELS } from '@/constants/api/educationLevel';
-import { SERVICE_STATUSES, SERVICE_TYPES } from '@/constants/api/queryParams';
-import { LOCATIONS } from '@/constants/components/location';
+import { EDUCATION_LEVELS, LOCATIONS, SERVICE_STATUSES, SERVICE_TYPES } from '@/constants/api';
 
 export const isValidServiceType = (value: unknown): value is ServiceType => {
   const serviceType = value as ServiceType;

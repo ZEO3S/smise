@@ -2,7 +2,7 @@ import { useSearchParams } from 'next/navigation';
 
 import { isValidSort } from '@/types/guards/queryParams';
 
-import { PARAMS } from '@/constants/api/queryParams';
+import { PARAMS } from '@/constants/api';
 
 export const useSort = () => {
   const searchParams = useSearchParams();

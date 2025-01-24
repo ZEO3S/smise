@@ -1,6 +1,6 @@
 import { Location } from '@/types/api/location';
 
-import { PARAMS } from '@/constants/api/queryParams';
+import { PARAMS } from '@/constants/api';
 
 import { Button, Text } from '@/components/common';
 

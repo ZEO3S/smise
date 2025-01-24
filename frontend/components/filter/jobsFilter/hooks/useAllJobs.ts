@@ -2,7 +2,7 @@ import { https } from '@/apis/fetch';
 
 import { ResponseJobs } from '@/types/api/jobs';
 
-import { JOBS_URL } from '@/constants/api/url';
+import { JOBS_URL } from '@/constants/api';
 
 import { useFetch } from '@/hooks/useFetch';
 import { useServiceType } from '@/hooks/useServiceType';

@@ -1,4 +1,4 @@
-import { PARAMS, SERVICE_TYPES } from '@/constants/api/queryParams';
+import { PARAMS, SERVICE_TYPES } from '@/constants/api';
 
 import { Radio, Text } from '@/components/common';
 

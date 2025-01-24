@@ -1,5 +1,4 @@
-import { EDUCATION_LEVELS } from '@/constants/api/educationLevel';
-import { PARAMS } from '@/constants/api/queryParams';
+import { EDUCATION_LEVELS, PARAMS } from '@/constants/api';
 
 import { Select, Text } from '@/components/common';
 

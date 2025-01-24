@@ -1,5 +1,4 @@
-import { PARAMS } from '@/constants/api/queryParams';
-import { SORT_TYPES } from '@/constants/components/sort';
+import { PARAMS, SORT_TYPES } from '@/constants/api';
 
 import { Select } from '@/components/common';
 

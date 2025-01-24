@@ -1,4 +1,4 @@
-import { LOCATIONS } from '@/constants/components/location';
+import { LOCATIONS } from '@/constants/api/location';
 
 export type District = keyof typeof LOCATIONS;
 

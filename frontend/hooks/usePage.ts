@@ -1,6 +1,6 @@
 import { useSearchParams } from 'next/navigation';
 
-import { PARAMS } from '@/constants/api/queryParams';
+import { PARAMS } from '@/constants/api';
 
 export const usePage = () => {
   const searchParams = useSearchParams();

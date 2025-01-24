@@ -1,6 +1,6 @@
 import MagnifyingGlassSVG from '@/assets/svgs/magnifying_glass.svg';
 
-import { PARAMS } from '@/constants/api/queryParams';
+import { PARAMS } from '@/constants/api';
 
 import { Input } from '@/components/common';
 

@@ -1,7 +1,6 @@
 import { https } from '@/apis/fetch';
 
-import { PARAMS } from '@/constants/api/queryParams';
-import { RECRUITMENT_URL } from '@/constants/api/url';
+import { PARAMS, RECRUITMENT_URL } from '@/constants/api';
 
 import type { ResponseRecruitment } from '@/components/recruitment/types';
 

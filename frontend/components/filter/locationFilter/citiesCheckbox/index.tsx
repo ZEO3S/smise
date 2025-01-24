@@ -2,7 +2,7 @@ import { generateCityId } from '@/utils/location';
 
 import { District } from '@/types/api/location';
 
-import { LOCATIONS } from '@/constants/components/location';
+import { LOCATIONS } from '@/constants/api';
 
 import { Checkbox } from '@/components/common';
 
