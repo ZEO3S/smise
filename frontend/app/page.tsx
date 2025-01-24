@@ -1,9 +1,9 @@
 'use client';
 
-import Filter from '@/components/filter';
-import Recruitment from '@/components/recruitment';
-import SearchBar from '@/components/searchBar';
-import SortTypeSelect from '@/components/sortTypeSelect';
+import { Filter } from '@/components';
+import { Recruitment } from '@/components';
+import { SearchBar } from '@/components';
+import { SortTypeSelect } from '@/components';
 
 export default function Home() {
   return (

@@ -2,7 +2,7 @@ import { Button, Spinner, Text } from '@/components/common';
 import { RecruitmentList } from '@/components/recruitment/components';
 import { useInitialRecruitment, useRecruitment } from '@/components/recruitment/hooks';
 
-export default function Recruitment() {
+export function Recruitment() {
   const { recruitment, isLoading, error, hasNext, fetchNextPage } = useRecruitment();
 
   useInitialRecruitment();

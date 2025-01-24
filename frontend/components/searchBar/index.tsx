@@ -7,7 +7,7 @@ import { Input } from '@/components/common';
 import { useControlledInput } from '@/hooks/useControlledInput';
 import { usePushRouteWithQueryParam } from '@/hooks/usePushRouteWithQueryParam';
 
-export default function SearchBar() {
+export function SearchBar() {
   const { value, onChangeInput } = useControlledInput();
   const { pushRoute } = usePushRouteWithQueryParam();
 

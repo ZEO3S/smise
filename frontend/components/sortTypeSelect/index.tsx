@@ -4,7 +4,7 @@ import { Select } from '@/components/common';
 
 import { usePushRouteWithQueryParam } from '@/hooks/usePushRouteWithQueryParam';
 
-export default function SortTypeSelect() {
+export function SortTypeSelect() {
   const { pushRoute } = usePushRouteWithQueryParam();
 
   return (
