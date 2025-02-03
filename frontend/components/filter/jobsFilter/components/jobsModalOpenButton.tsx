@@ -11,20 +11,18 @@ interface Props {
 
 export function JobsModalOpenButton({ openModal }: Props) {
   const jobs = useJobs();
-  const detailsLength = jobs
-    ? jobs.reduce((acc, cur) => {
-        return acc + cur.details.length;
-      }, 0)
-    : 0;
+  const detailsLength = jobs?.flatMap((job) => job.details).length ?? 0;
+  const hasJobs = jobs && jobs?.length > 0;
+  const remainingCount = detailsLength - 1;
 
   return (
     <Button className='flex gap-1 w-full py-2 hover:bg-default-color hover:bg-opacity-10' onClick={openModal}>
-      <Text content={jobs && Boolean(jobs.length) ? jobs[0].category : '전체'} />
-      {jobs && Boolean(jobs.length) && (
+      <Text content={hasJobs ? jobs[0].category : '전체'} />
+      {hasJobs && (
         <>
           <Text content='·' />
           <Text content={jobs[0].details[0]} />
-          {Boolean(detailsLength - 1) && <Text content={`외 ${detailsLength - 1}`} />}
+          {remainingCount > 0 && <Text content={`외 ${remainingCount}`} />}
         </>
       )}
       <Image

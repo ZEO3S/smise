@@ -1,4 +1,5 @@
 import { useSearchParams } from 'next/navigation';
+import { useCallback } from 'react';
 
 import { https } from '@/apis/fetch';
 
@@ -12,9 +13,10 @@ import { useFetch } from '@/hooks';
 export const useAllJobs = () => {
   const searchParams = useSearchParams();
   const serviceType = searchParams.get(PARAMS.SERVICE_TYPE);
-  const url = `${JOBS_URL}?serviceType=${isValidServiceType(serviceType) ? serviceType : '전체'}`;
+  const serviceTypeParam = isValidServiceType(serviceType) ? `?serviceType=${serviceType}` : '';
+  const url = `${JOBS_URL}${serviceTypeParam}`;
   const { data, isLoading, error } = useFetch<string, ResponseJobs>({
-    fetch: () => https.get<ResponseJobs>(url),
+    fetch: useCallback(() => https.get<ResponseJobs>(url), [url]),
     key: url,
   });
 

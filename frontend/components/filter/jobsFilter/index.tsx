@@ -25,7 +25,6 @@ export default function JobsFilter() {
   const { selectedCategory, clearSelectedCategory, updateSelectedCategory } = useSelectedCategory();
   const { checkedDetails, addCheckedDetail, deleteCheckedDetail, clearCheckedDetails, initializeCheckedDetails } =
     useCheckedDetails();
-
   const { isOpen, openModal, closeModal } = useModal();
 
   const onModalClose = () => {
@@ -33,6 +32,12 @@ export default function JobsFilter() {
     initializeSelectedJobs();
     initializeCheckedDetails();
     closeModal();
+  };
+
+  const clearAll = () => {
+    clearSelectedCategory();
+    clearSelectedJobs();
+    clearCheckedDetails();
   };
 
   return (
@@ -50,11 +55,7 @@ export default function JobsFilter() {
             </Button>
           </div>
           <div className='flex gap-2 h-[360px]'>
-            <Categories
-              allJobs={allJobs}
-              clearSelectedCategory={clearSelectedCategory}
-              updateSelectedCategory={updateSelectedCategory}
-            />
+            <Categories allJobs={allJobs} clearAll={clearAll} updateSelectedCategory={updateSelectedCategory} />
             <Details
               allJobs={allJobs}
               selectedCategory={selectedCategory}
@@ -66,11 +67,7 @@ export default function JobsFilter() {
             />
           </div>
           <div className='flex justify-between'>
-            <ResetJobsButton
-              clearSelectedCategory={clearSelectedCategory}
-              clearSelectedJobs={clearSelectedJobs}
-              clearCheckedDetails={clearCheckedDetails}
-            />
+            <ResetJobsButton clearAll={clearAll} />
             <ApplyJobsButton
               selectedJobs={selectedJobs}
               clearSelectedCategory={clearSelectedCategory}

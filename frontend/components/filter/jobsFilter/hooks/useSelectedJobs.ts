@@ -6,72 +6,41 @@ import { useJobs } from '@/components/filter/jobsFilter/hooks';
 
 export const useSelectedJobs = () => {
   const jobs = useJobs();
-  const [selectedJobs, setSelectedJobs] = useState<Array<Job> | null>(jobs);
+  const [selectedJobs, setSelectedJobs] = useState<Array<Job> | null>(null);
+
+  const findJobIndex = (prev: Array<Job>, category: string) => prev.findIndex((job) => job.category === category);
 
   const addSelectedJobs = (selectedCategory: string | null, detail: string) => {
+    if (!selectedCategory) return;
+
     setSelectedJobs((prev) => {
-      if (!selectedCategory) return prev;
+      if (!prev) return [{ category: selectedCategory, details: [detail] }];
 
-      if (!prev) {
-        return [
-          {
-            category: selectedCategory,
-            details: [detail],
-          },
-        ];
-      }
+      const targetIndex = findJobIndex(prev, selectedCategory);
 
-      const targetIndex = prev.findIndex((prevJob) => prevJob.category === selectedCategory);
+      if (targetIndex === -1) return [...prev, { category: selectedCategory, details: [detail] }];
 
-      if (targetIndex === -1) {
-        return [
-          ...prev,
-          {
-            category: selectedCategory,
-            details: [detail],
-          },
-        ];
-      }
-
-      return prev.map((prevJob, index) => {
-        if (index !== targetIndex) return prevJob;
-
-        return {
-          ...prevJob,
-          details: [...prevJob.details, detail],
-        };
-      });
+      return prev.map((job, index) => (index === targetIndex ? { ...job, details: [...job.details, detail] } : job));
     });
   };
 
   const deleteSelectedJobs = (selectedCategory: string | null, detail: string) => {
+    if (!selectedCategory) return;
+
     setSelectedJobs((prev) => {
-      if (!selectedCategory || !prev) return prev;
+      if (!prev) return prev;
 
-      const targetIndex = prev.findIndex((prevJob) => prevJob.category === selectedCategory);
-
+      const targetIndex = findJobIndex(prev, selectedCategory);
       if (targetIndex === -1) return prev;
 
       const newDetails = prev[targetIndex].details.filter((prevDetail) => prevDetail !== detail);
+      if (!newDetails.length) return prev.filter((_, index) => index !== targetIndex);
 
-      if (newDetails.length === 0) {
-        return prev.filter((_, index) => index !== targetIndex);
-      }
-
-      return prev.map((prevJob, index) => {
-        if (index !== targetIndex) return prevJob;
-
-        return {
-          ...prevJob,
-          details: newDetails,
-        };
-      });
+      return prev.map((job, index) => (index === targetIndex ? { ...job, details: newDetails } : job));
     });
   };
 
-  const clearSelectedJobs = () => {
-    setSelectedJobs(null);
-  };
+  const clearSelectedJobs = () => setSelectedJobs(null);
 
   const initializeSelectedJobs = () => setSelectedJobs(jobs);
 

@@ -6,26 +6,19 @@ export const usePushRouteWithQueryParam = () => {
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams.toString());
 
-  const createQueryParam = (name: string, value: string) => {
-    params.set(name, value);
-
-    return params.toString();
-  };
-
   const pushWithDisableScroll = (url: string) => router.push(url, { scroll: false });
 
-  const pushRoute = (name: string, value: string) =>
-    pushWithDisableScroll(`${pathname}?${createQueryParam(name, value)}`);
+  const pushRoute = (name: string, value: string) => {
+    params.set(name, value);
+
+    pushWithDisableScroll(`${pathname}?${params.toString()}`);
+  };
 
   const deleteQueryParam = (name: string) => {
     params.delete(name);
 
-    if (!params.size) {
-      pushWithDisableScroll(`${pathname}`);
-    } else {
-      const queryParams = params.toString();
-      pushWithDisableScroll(`${pathname}?${queryParams}`);
-    }
+    if (!params.size) pushWithDisableScroll(`${pathname}`);
+    else pushWithDisableScroll(`${pathname}?${params.toString()}`);
   };
 
   return { pushRoute, deleteQueryParam };

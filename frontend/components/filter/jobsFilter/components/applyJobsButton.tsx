@@ -16,19 +16,19 @@ export function ApplyJobsButton({ selectedJobs, clearSelectedCategory, closeModa
   const { pushRoute, deleteQueryParam } = usePushRouteWithQueryParam();
 
   const applyJob = () => {
-    if (selectedJobs && selectedJobs.length) {
-      const stringifiedSelectedJobs = selectedJobs
-        .map(
-          (selectedJob) =>
-            `${selectedJob.category},${selectedJob.details.map((detail) => detail.split('-').pop()).join(',')}`,
-        )
-        .join('&');
-
-      pushRoute(PARAMS.JOBS, stringifiedSelectedJobs);
-    } else {
+    if (!selectedJobs?.length) {
       deleteQueryParam(PARAMS.JOBS);
+      closeModal();
+
+      return;
     }
 
+    const formatSelectedJobs = (jobs: Array<Job>) =>
+      jobs
+        .map(({ category, details }) => `${category},${details.map((detail) => detail.split('-').pop()).join(',')}`)
+        .join('&');
+
+    pushRoute(PARAMS.JOBS, formatSelectedJobs(selectedJobs));
     clearSelectedCategory();
     closeModal();
   };

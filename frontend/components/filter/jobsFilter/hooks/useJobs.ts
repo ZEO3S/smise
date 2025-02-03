@@ -7,15 +7,18 @@ import { PARAMS } from '@/constants/api';
 export const useJobs = () => {
   const searchParams = useSearchParams();
   const jobsQueryParam = searchParams.get(PARAMS.JOBS);
-  const jobsWithCategories = jobsQueryParam?.split('&');
-  const jobs = jobsWithCategories?.map((jobsWithCategory) => {
-    const jobsWithCategoryList = jobsWithCategory.split(',');
 
-    return {
-      category: jobsWithCategoryList.shift(),
-      details: jobsWithCategoryList,
-    };
-  });
+  if (!jobsQueryParam) return null;
+
+  const parseJobsParam = (queryParam: string) => {
+    return queryParam.split('&').map((jobsWithCategory) => {
+      const [category, ...details] = jobsWithCategory.split(',');
+
+      return { category, details };
+    });
+  };
+
+  const jobs = parseJobsParam(jobsQueryParam);
 
   return isValidJobs(jobs) ? jobs : null;
 };

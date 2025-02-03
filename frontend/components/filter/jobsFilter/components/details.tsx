@@ -1,8 +1,7 @@
-import { generateJobDetailId } from '@/utils/job';
-
 import { Job } from '@/types/api/jobs';
 
 import { Checkbox, Text } from '@/components/common';
+import { generateJobDetailId } from '@/components/filter/jobsFilter/utils/jobDetail';
 
 interface Props {
   allJobs: Array<Job> | null;
@@ -23,50 +22,54 @@ export function Details({
   addCheckedDetail,
   deleteCheckedDetail,
 }: Props) {
-  const addDetail = (job: string, checkedJob: string) => {
-    addCheckedDetail(checkedJob);
-    addSelectedJobs(selectedCategory, job);
+  const selectedJob = allJobs?.find((job) => job.category === selectedCategory);
+
+  const handleCheck = (detail: string) => {
+    if (!selectedCategory) return;
+
+    const detailId = generateJobDetailId(selectedCategory, detail);
+    addCheckedDetail(detailId);
+    addSelectedJobs(selectedCategory, detail);
   };
 
-  const deleteJob = (selectedCategory: string, job: string) => {
-    const targetCheckedJob = generateJobDetailId(selectedCategory, job);
-    deleteCheckedDetail(targetCheckedJob);
+  const handleUncheck = (detail: string) => {
+    if (!selectedCategory) return;
 
-    deleteSelectedJobs(selectedCategory, job);
+    const detailId = generateJobDetailId(selectedCategory, detail);
+    deleteCheckedDetail(detailId);
+    deleteSelectedJobs(selectedCategory, detail);
   };
+
+  if (!selectedCategory) {
+    return (
+      <div className='flex flex-col justify-center items-center flex-1'>
+        <Text variant='full-base' opacity={70} content='원하는 직무를 선택하고 적용을 눌러 확인하세요' />
+      </div>
+    );
+  }
 
   return (
-    <>
-      {selectedCategory ? (
-        <ul className='flex-1 overflow-y-scroll'>
-          {allJobs
-            ?.find((job) => job.category === selectedCategory)
-            ?.details.map((job) => {
-              const id = generateJobDetailId(selectedCategory, job);
+    <ul className='flex-1 overflow-y-scroll'>
+      {selectedJob?.details.map((detail) => {
+        const detailId = generateJobDetailId(selectedCategory, detail);
 
-              return (
-                <li key={id}>
-                  <Checkbox
-                    value={job}
-                    label={job}
-                    defaultChecked={checkedDetails?.includes(id)}
-                    boxPosition='right'
-                    textVariant='full-base'
-                    onCheck={() => addDetail(job, id)}
-                    onUnCheck={() => deleteJob(selectedCategory, job)}
-                    padding
-                    hover
-                    rounded
-                  />
-                </li>
-              );
-            })}
-        </ul>
-      ) : (
-        <div className='flex flex-col justify-center items-center flex-1'>
-          <Text variant='full-base' opacity={70} content='원하는 직무를 선택하고 적용을 눌러 확인하세요' />
-        </div>
-      )}
-    </>
+        return (
+          <li key={detailId}>
+            <Checkbox
+              value={detail}
+              label={detail}
+              defaultChecked={checkedDetails?.includes(detailId)}
+              boxPosition='right'
+              textVariant='full-base'
+              onCheck={() => handleCheck(detail)}
+              onUnCheck={() => handleUncheck(detail)}
+              padding
+              hover
+              rounded
+            />
+          </li>
+        );
+      })}
+    </ul>
   );
 }
