@@ -1,7 +1,7 @@
 import EducationLevelFilter from './educationLevelFilter';
 import ExperienceLevelFilter from './experienceLevelFilter';
 import JobsFilter from './jobsFilter';
-import LocationFilter from './locationFilter';
+import LocationsFilter from './locationsFilter';
 import ServiceStatusFilter from './serviceStatusFilter';
 import ServiceTypesFilter from './serviceTypesFilter';
 
@@ -11,7 +11,7 @@ export function Filter() {
       <ServiceTypesFilter />
       <ServiceStatusFilter />
       <JobsFilter />
-      <LocationFilter />
+      <LocationsFilter />
       <EducationLevelFilter />
       <ExperienceLevelFilter />
     </div>

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
 import { useJobs } from '@/components/filter/jobsFilter/hooks';
-import { generateJobDetailId } from '@/components/filter/jobsFilter/utils/jobDetail';
+import { generateCategoryId } from '@/components/filter/utils/filterModal';
 
 export const useCheckedDetails = () => {
   const jobs = useJobs();
   const getDefaultCheckedDetails = () =>
-    jobs ? jobs.flatMap((job) => job.details.map((detail) => generateJobDetailId(job.category, detail))) : null;
+    jobs ? jobs.flatMap((job) => job.details.map((detail) => generateCategoryId(job.category, detail))) : null;
   const [checkedDetails, setCheckedDetails] = useState<Array<string> | null>(getDefaultCheckedDetails());
 
   const addCheckedDetail = (checkedDetail: string) => {
@@ -25,13 +25,10 @@ export const useCheckedDetails = () => {
 
   const clearCheckedDetails = () => setCheckedDetails(null);
 
-  const initializeCheckedDetails = () => setCheckedDetails(getDefaultCheckedDetails());
-
   return {
     checkedDetails,
     addCheckedDetail,
     deleteCheckedDetail,
     clearCheckedDetails,
-    initializeCheckedDetails,
   };
 };
