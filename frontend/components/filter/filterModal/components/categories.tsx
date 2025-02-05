@@ -5,7 +5,7 @@ import { ArrowSVG } from '@/assets/svgs';
 import { Button, Text } from '@/components/common';
 
 interface Props {
-  items: Array<string>;
+  items: string[];
   on전체Click: () => void;
   onItemClick: (item: string) => void;
 }

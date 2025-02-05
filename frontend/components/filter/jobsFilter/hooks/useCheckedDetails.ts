@@ -7,7 +7,7 @@ export const useCheckedDetails = () => {
   const jobs = useJobs();
   const getDefaultCheckedDetails = () =>
     jobs ? jobs.flatMap((job) => job.details.map((detail) => generateCategoryId(job.category, detail))) : null;
-  const [checkedDetails, setCheckedDetails] = useState<Array<string> | null>(getDefaultCheckedDetails());
+  const [checkedDetails, setCheckedDetails] = useState<string[] | null>(getDefaultCheckedDetails());
 
   const addCheckedDetail = (checkedDetail: string) => {
     setCheckedDetails((prev) => (prev ? [...prev, checkedDetail] : [checkedDetail]));

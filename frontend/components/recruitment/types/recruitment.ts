@@ -20,14 +20,14 @@ export interface Recruitment {
 }
 
 export interface RequestRecruitmentParams {
-  jobs: Array<Job> | null;
+  jobs: Job[] | null;
 }
 
 export interface DefaultRequestRecruitmentParams {
   SERVICE_TYPE: ServiceType | null;
   SERVICE_STATUS: ServiceStatus | null;
-  JOBS: Array<Job> | null;
-  LOCATIONS: Array<Location> | null;
+  JOBS: Job[] | null;
+  LOCATIONS: Location[] | null;
   EXPERIENCE_LEVEL: ExperienceLevel | null;
   EDUCATION_LEVEL: EducationLevel | null;
   SORT: Sort | null;
@@ -37,7 +37,7 @@ export interface DefaultRequestRecruitmentParams {
 }
 
 export interface ResponseRecruitment {
-  recruitment: Array<Recruitment>;
+  recruitment: Recruitment[];
   size: number;
   page: number;
   totalElements: number;

@@ -6,9 +6,9 @@ import { useJobs } from '@/components/filter/jobsFilter/hooks';
 
 export const useSelectedJobs = () => {
   const jobs = useJobs();
-  const [selectedJobs, setSelectedJobs] = useState<Array<Job> | null>(null);
+  const [selectedJobs, setSelectedJobs] = useState<Job[] | null>(null);
 
-  const findJobIndex = (prev: Array<Job>, category: string) => prev.findIndex((job) => job.category === category);
+  const findJobIndex = (prev: Job[], category: string) => prev.findIndex((job) => job.category === category);
 
   const addSelectedJobs = (selectedCategory: string | null, id: string) => {
     if (!selectedCategory) return;

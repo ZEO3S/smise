@@ -33,8 +33,8 @@ export const isValidDistrict = (value: unknown): value is District => {
   return typeof value === 'string' && value in LOCATIONS;
 };
 
-export const isValidLocations = (value: unknown): value is Array<Location> => {
-  const locations = value as Array<Location>;
+export const isValidLocations = (value: unknown): value is Location[] => {
+  const locations = value as Location[];
 
   return (
     Array.isArray(locations) &&
@@ -45,8 +45,8 @@ export const isValidLocations = (value: unknown): value is Array<Location> => {
   );
 };
 
-export const isValidJobs = (value: unknown): value is Array<Job> => {
-  const jobs = value as Array<Job>;
+export const isValidJobs = (value: unknown): value is Job[] => {
+  const jobs = value as Job[];
 
   return (
     Array.isArray(jobs) &&
