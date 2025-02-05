@@ -4,10 +4,10 @@ import { District, Location } from '@/types/api/location';
 
 interface FilterLocations {
   selectedDistrict: District | null;
-  locations: Array<Location> | null;
+  locations: Location[] | null;
 }
 
-export const useFilterLocations = (locations: Array<Location> | null) => {
+export const useFilterLocations = (locations: Location[] | null) => {
   const [filterLocations, setFilterLocations] = useState<FilterLocations>({
     locations,
     selectedDistrict: null,

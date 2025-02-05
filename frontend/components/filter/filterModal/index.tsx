@@ -11,7 +11,7 @@ import {
   ResetFilterButton,
 } from '@/components/filter/filterModal/components';
 
-export type Items = Array<Job> | Array<Location> | null;
+export type Items = Job[] | Location[] | null;
 
 interface Props {
   title: string;

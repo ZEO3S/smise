@@ -4,5 +4,5 @@ export type District = keyof typeof LOCATIONS;
 
 export interface Location {
   district: District;
-  cities: Array<string>;
+  cities: string[];
 }

@@ -1,8 +1,8 @@
 export interface Job {
   category: string;
-  details: Array<string>;
+  details: string[];
 }
 
 export interface ResponseJobs {
-  jobs: Array<Job>;
+  jobs: Job[];
 }
