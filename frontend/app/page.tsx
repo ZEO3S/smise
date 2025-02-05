@@ -1,59 +1,22 @@
 'use client';
 
-import Filter from '@/components/filter';
-import Recruitment from '@/components/recruitment';
-import SearchBar from '@/components/searchBar';
-import SortTypeSelect from '@/components/sortTypeSelect';
-
-import { useRecruitment } from '@/hooks/useRecruitment';
+import { Filter } from '@/components';
+import { Recruitment } from '@/components';
+import { SearchBar } from '@/components';
+import { SortTypeSelect } from '@/components';
 
 export default function Home() {
-  const {
-    serviceType,
-    jobs,
-    locations,
-    recruitment,
-    isLoading,
-    error,
-    hasNext,
-    updateServiceType,
-    updateServiceStatus,
-    updateJobs,
-    updateLocations,
-    updateEducationLevel,
-    updateExperienceLevel,
-    updateKeyword,
-    updateSort,
-    fetchNextPage,
-  } = useRecruitment();
-
   return (
     <div className='flex flex-1 gap-10 px-40 py-10'>
-      <Filter
-        selectedDefaultJobs={jobs}
-        selectedServiceType={serviceType}
-        locations={locations}
-        updateLocations={updateLocations}
-        updateEducationLevel={updateEducationLevel}
-        updateExperienceLevel={updateExperienceLevel}
-        updateServiceType={updateServiceType}
-        updateServiceStatus={updateServiceStatus}
-        updateJobs={updateJobs}
-      />
+      <Filter />
       <div className='flex flex-col flex-1'>
         <div className='sticky top-16 pb-4 bg-white'>
-          <SearchBar updateKeyword={updateKeyword} />
+          <SearchBar />
         </div>
         <div className='flex justify-end sticky top-32 mb-2 bg-white'>
-          <SortTypeSelect updateSort={updateSort} />
+          <SortTypeSelect />
         </div>
-        <Recruitment
-          recruitment={recruitment}
-          isLoading={isLoading}
-          error={error}
-          hasNext={hasNext}
-          fetchNextPage={fetchNextPage}
-        />
+        <Recruitment />
       </div>
     </div>
   );

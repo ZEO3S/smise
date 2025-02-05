@@ -1,189 +1,67 @@
-import Image from 'next/image';
+import { PARAMS } from '@/constants/api';
 
-import ArrowSVG from '@/assets/svgs/arrow.svg';
-import CloseSVG from '@/assets/svgs/close.svg';
+import FilterModal from '@/components/filter/filterModal';
+import {
+  useAllJobs,
+  useCheckedDetails,
+  useJobs,
+  useSelectedCategory,
+  useSelectedJobs,
+} from '@/components/filter/jobsFilter/hooks';
+import { formatQueryParam } from '@/components/filter/utils/filterModal';
 
-import { Job, ServiceType } from '@/types/api/recruitment';
+import { usePushRouteWithQueryParam } from '@/hooks';
 
-import Button from '@/components/common/button';
-import Checkbox from '@/components/common/checkbox';
-import Modal from '@/components/common/modal';
-import Text from '@/components/common/text';
+export default function JobsFilter() {
+  const { allJobs } = useAllJobs();
+  const jobs = useJobs();
+  const { selectedJobs, addSelectedJobs, deleteSelectedJobs, clearSelectedJobs } = useSelectedJobs();
+  const { selectedCategory, clearSelectedCategory, updateSelectedCategory } = useSelectedCategory();
+  const { checkedDetails, addCheckedDetail, deleteCheckedDetail, clearCheckedDetails } = useCheckedDetails();
+  const { pushRoute, deleteQueryParam } = usePushRouteWithQueryParam();
+  const selectedJob = allJobs.find((job) => job.category === selectedCategory);
 
-import { useCheckedDetails } from '@/hooks/useCheckedDetails';
-import { useJobs } from '@/hooks/useJobs';
-import { useModal } from '@/hooks/useModal';
-import { useSelectedCategory } from '@/hooks/useSelectedCategory';
-import { useSelectedJobs } from '@/hooks/useSelectedJobs';
-
-interface Props {
-  selectedDefaultJobs: Array<Job> | null;
-  selectedServiceType: ServiceType | null;
-  updateJobs: (selectedJob: Array<Job> | null) => void;
-}
-
-export default function JobsFilter({ selectedDefaultJobs, selectedServiceType, updateJobs }: Props) {
-  const { isOpen, openModal, closeModal } = useModal();
-  const { jobs } = useJobs(selectedServiceType);
-  const { selectedCategory, updateSelectedCategory, clearSelectedCategory } = useSelectedCategory();
-  const { selectedJobs, addSelectedJobs, deleteSelectedJobs, clearSelectedJobs, initializeSelectedJobs } =
-    useSelectedJobs(selectedDefaultJobs);
-  const {
-    checkedDetails,
-    generateDetailKey,
-    addCheckedDetail,
-    deleteCheckedDetail,
-    clearCheckedDetails,
-    initializeCheckedDetails,
-  } = useCheckedDetails(selectedDefaultJobs);
-
-  const detailsLength = selectedDefaultJobs
-    ? selectedDefaultJobs.reduce((acc, cur) => {
-        return acc + cur.details.length;
-      }, 0)
-    : 0;
-
-  const handleClick전체 = () => {
-    clearSelectedCategory();
+  const applyFilter = () => {
+    if (selectedJobs && selectedJobs.length)
+      pushRoute(PARAMS.JOBS, formatQueryParam(selectedJobs, 'category', 'details'));
+    else deleteQueryParam(PARAMS.JOBS);
   };
 
-  const handleClickButton = (category: string) => {
-    updateSelectedCategory(category);
-  };
-
-  const addDetail = (job: string, checkedJob: string) => {
-    addCheckedDetail(checkedJob);
-    addSelectedJobs(selectedCategory, job);
-  };
-
-  const deleteJob = (selectedCategory: string, job: string) => {
-    const targetCheckedJob = generateDetailKey(selectedCategory, job);
-    deleteCheckedDetail(targetCheckedJob);
-
-    deleteSelectedJobs(selectedCategory, job);
-  };
-
-  const resetJob = () => {
+  const clearAll = () => {
     clearSelectedCategory();
     clearSelectedJobs();
     clearCheckedDetails();
   };
 
-  const applyKob = () => {
-    clearSelectedCategory();
-    updateJobs(selectedJobs);
-    closeModal();
+  const handleCheck = (id: string) => {
+    if (!selectedCategory) return;
+
+    addCheckedDetail(id);
+    addSelectedJobs(selectedCategory, id);
   };
 
-  const onCloseModal = () => {
-    clearSelectedCategory();
-    initializeSelectedJobs();
-    initializeCheckedDetails();
-    closeModal();
+  const handleUncheck = (id: string) => {
+    if (!selectedCategory) return;
+
+    deleteCheckedDetail(id);
+    deleteSelectedJobs(selectedCategory, id);
   };
 
   return (
-    <div className='py-2'>
-      <div className='py-2'>
-        <Text variant='semi-title' content='직무' />
-      </div>
-      <Button className='flex gap-1 w-full py-2 hover:bg-default-color hover:bg-opacity-10' onClick={openModal}>
-        <>
-          <Text
-            content={
-              selectedDefaultJobs && Boolean(selectedDefaultJobs.length) ? selectedDefaultJobs[0].category : '전체'
-            }
-          />
-          {selectedDefaultJobs && Boolean(selectedDefaultJobs.length) && (
-            <>
-              <Text content='·' />
-              <Text content={selectedDefaultJobs[0].details[0]} />
-              {Boolean(detailsLength - 1) && <Text content={`외 ${detailsLength - 1}`} />}
-            </>
-          )}
-          <Image
-            className='ml-1 -rotate-90 select-none border border-default-color rounded'
-            src={ArrowSVG}
-            alt='모달 열기 버튼'
-          />
-        </>
-      </Button>
-      <Modal openState={isOpen} onClose={onCloseModal}>
-        <div className='flex flex-col gap-6 w-[660px] p-6 rounded-lg bg-white'>
-          <div className='flex justify-between'>
-            <Text variant='title' content='직무' />
-            <Button onClick={closeModal}>
-              <Image className='select-none' src={CloseSVG} alt='모달 닫기 버튼' />
-            </Button>
-          </div>
-          <div className='flex gap-2 h-[360px]'>
-            <ul className='overflow-y-scroll'>
-              <li key='전체'>
-                <Button
-                  className='flex justify-between w-60 p-4 cursor-pointer rounded hover:bg-default-color hover:bg-opacity-10'
-                  onClick={handleClick전체}
-                >
-                  <Text variant='full-base' content='전체' />
-                </Button>
-              </li>
-              {jobs?.map(({ category }) => {
-                return (
-                  <li key={category}>
-                    <Button
-                      className='flex justify-between w-60 p-4 cursor-pointer rounded hover:bg-default-color hover:bg-opacity-10'
-                      onClick={() => handleClickButton(category)}
-                    >
-                      <Text variant='full-base' content={category} />
-                      <Image className='ml-1 -rotate-90 select-none' src={ArrowSVG} alt='상세 직무 열기 버튼' />
-                    </Button>
-                  </li>
-                );
-              })}
-            </ul>
-            {selectedCategory ? (
-              <ul className='flex-1 overflow-y-scroll'>
-                {jobs
-                  ?.find((job) => job.category === selectedCategory)
-                  ?.details.map((job) => {
-                    const key = generateDetailKey(selectedCategory, job);
-
-                    return (
-                      <li key={key}>
-                        <Checkbox
-                          value={job}
-                          label={job}
-                          defaultChecked={checkedDetails?.includes(key)}
-                          boxPosition='right'
-                          textVariant='full-base'
-                          onCheck={() => addDetail(job, key)}
-                          onUnCheck={() => deleteJob(selectedCategory, job)}
-                          padding
-                          hover
-                          rounded
-                        />
-                      </li>
-                    );
-                  })}
-              </ul>
-            ) : (
-              <div className='flex flex-col justify-center items-center flex-1'>
-                <Text variant='full-base' opacity={70} content='원하는 직무를 선택하고 적용을 눌러 확인하세요' />
-              </div>
-            )}
-          </div>
-          <div className='flex justify-between'>
-            <Button
-              className='py-1 px-4 rounded border border-default-color border-opacity-30 hover:bg-default-color hover:bg-opacity-10'
-              onClick={resetJob}
-            >
-              <Text variant='middle-title' opacity={70} content='초기화' />
-            </Button>
-            <Button className='bg-green-800 py-1 px-4 rounded' onClick={applyKob}>
-              <Text variant='middle-title' color='white' content='적용' />
-            </Button>
-          </div>
-        </div>
-      </Modal>
-    </div>
+    <FilterModal
+      title='직무'
+      items={jobs}
+      noneSelectText='원하는 직무를 선택하고 적용을 눌러 확인하세요'
+      categories={allJobs.map(({ category }) => category)}
+      selectedCategory={selectedCategory}
+      selectedDetails={selectedJob ? selectedJob.details : []}
+      checkedDetails={checkedDetails}
+      onCategory전체Click={clearAll}
+      onCategoryItemClick={updateSelectedCategory}
+      onDetailCheck={handleCheck}
+      onDetailUncheck={handleUncheck}
+      onResetClick={clearAll}
+      onApplyClick={applyFilter}
+    />
   );
 }

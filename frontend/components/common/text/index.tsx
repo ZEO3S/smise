@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react';
 
-export type Variant = 'title' | 'middle-title' | 'semi-title' | 'full-base' | 'base' | 'semi-base';
+import { Variant } from '@/types/components';
 
 type Color = 'default-color' | 'white';
 
@@ -38,7 +38,7 @@ const SIZE = {
   'semi-title': 'text-base',
 };
 
-export default function Text({ variant = 'base', color = 'default-color', opacity = 100, content }: Props) {
+export function Text({ variant = 'base', color = 'default-color', opacity = 100, content }: Props) {
   return (
     <p
       className={`text-default-color select-none ${SIZE[variant]} ${WEIGHT[variant]} ${OPACITY[variant]} text-opacity-${opacity}`}

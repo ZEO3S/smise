@@ -1,15 +1,16 @@
-import MagnifyingGlassSVG from '@/assets/svgs/magnifying_glass.svg';
+import { MagnifyingGlassSVG } from '@/assets/svgs';
 
-import { useControlledInput } from '@/hooks/useControlledInput';
+import { PARAMS } from '@/constants/api';
 
-import Input from '../common/input';
+import { Input } from '@/components/common';
 
-interface Props {
-  updateKeyword: (keyword: string) => void;
-}
+import { useControlledInput, usePushRouteWithQueryParam } from '@/hooks';
 
-export default function SearchBar({ updateKeyword }: Props) {
+export function SearchBar() {
   const { value, onChangeInput } = useControlledInput();
+  const { pushRoute } = usePushRouteWithQueryParam();
+
+  const updateKeyword = () => pushRoute(PARAMS.KEYWORD, value);
 
   return (
     <Input
@@ -17,8 +18,8 @@ export default function SearchBar({ updateKeyword }: Props) {
       buttonImage={MagnifyingGlassSVG}
       placeholder='검색어를 입력해 주세요.'
       onChange={onChangeInput}
-      onEnter={() => updateKeyword(value)}
-      onClickButton={() => updateKeyword(value)}
+      onEnter={updateKeyword}
+      onClickButton={updateKeyword}
       hasButton
     />
   );

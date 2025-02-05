@@ -1,15 +1,12 @@
-import { ServiceType } from '@/types/api/recruitment';
+import { PARAMS, SERVICE_TYPES } from '@/constants/api';
 
-import Radio from '@/components/common/radio';
-import Text from '@/components/common/text';
+import { Radio, Text } from '@/components/common';
 
-const SERVICE_TYPES: Array<ServiceType> = ['산업기능요원', '전문연구요원', '승선근무예비역'];
+import { usePushRouteWithQueryParam } from '@/hooks';
 
-interface Props {
-  updateServiceType: (string: ServiceType) => void;
-}
+export default function ServiceTypesFilter() {
+  const { pushRoute } = usePushRouteWithQueryParam();
 
-export default function ServiceTypesFilter({ updateServiceType }: Props) {
   return (
     <div className='pb-2'>
       <div className='pb-2'>
@@ -17,13 +14,13 @@ export default function ServiceTypesFilter({ updateServiceType }: Props) {
       </div>
       <Radio>
         <ul>
-          {SERVICE_TYPES.map((serviceTypes) => {
+          {SERVICE_TYPES.map((serviceType) => {
             return (
-              <li key={serviceTypes}>
+              <li key={serviceType}>
                 <Radio.Option
-                  value={serviceTypes}
-                  label={serviceTypes}
-                  onChecked={() => updateServiceType(serviceTypes)}
+                  value={serviceType}
+                  label={serviceType}
+                  onChecked={() => pushRoute(PARAMS.SERVICE_TYPE, serviceType)}
                 />
               </li>
             );

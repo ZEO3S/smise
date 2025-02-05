@@ -1,19 +1,12 @@
-import { Recruitment as RecruitmentType } from '@/types/api/recruitment';
+import { Button, Spinner, Text } from '@/components/common';
+import { RecruitmentList } from '@/components/recruitment/components';
+import { useInitialRecruitment, useRecruitment } from '@/components/recruitment/hooks';
 
-import Button from '../common/button';
-import Spinner from '../common/spinner';
-import Text from '../common/text';
-import RecruitmentList from './recruitmentList';
+export function Recruitment() {
+  const { recruitment, isLoading, error, hasNext, fetchNextPage } = useRecruitment();
 
-interface Props {
-  recruitment: Array<RecruitmentType>;
-  isLoading: boolean;
-  error: Error | null;
-  hasNext: Boolean;
-  fetchNextPage: () => void;
-}
+  useInitialRecruitment();
 
-export default function Recruitment({ recruitment, isLoading, error, hasNext, fetchNextPage }: Props) {
   if (isLoading) {
     return (
       <div className='flex flex-1 justify-center items-center'>

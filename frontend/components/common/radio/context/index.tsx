@@ -6,7 +6,7 @@ interface Props extends PropsWithChildren {
   value?: RadioContextValue;
 }
 
-export default function RadioContextProvider({ children }: Props) {
+export function RadioContextProvider({ children }: Props) {
   const [selectedValue, setSelectedValue] = useState('');
 
   const onChange: ChangeEventHandler<HTMLInputElement> = (event) => {

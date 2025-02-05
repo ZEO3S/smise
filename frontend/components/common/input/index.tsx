@@ -1,18 +1,17 @@
 import Image from 'next/image';
 import { ComponentPropsWithoutRef, KeyboardEventHandler, MouseEventHandler } from 'react';
 
-import Button from '../button';
-import Text from '../text';
+import { Button, Text } from '@/components/common';
 
 interface Props extends ComponentPropsWithoutRef<'input'> {
   label?: string;
   hasButton?: boolean;
-  buttonImage?: any;
+  buttonImage?: string;
   onEnter?: () => void;
   onClickButton?: () => void;
 }
 
-export default function Input({
+export function Input({
   label = '',
   value,
   hasButton = false,

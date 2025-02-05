@@ -1,17 +1,19 @@
+import { PARAMS } from '@/constants/api';
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 
-  const serviceType = searchParams.get('serviceType');
-  const serviceStatus = searchParams.get('serviceStatus');
-  const jobs = searchParams.get('jobs');
+  const serviceType = searchParams.get(PARAMS.SERVICE_TYPE);
+  const serviceStatus = searchParams.get(PARAMS.SERVICE_STATUS);
+  const jobs = searchParams.get(PARAMS.JOBS);
   const detailedJobs = searchParams.get('detailedJobs');
-  const locations = searchParams.get('locations');
-  const experienceLevel = searchParams.get('experienceLevel');
-  const educationLevel = searchParams.get('educationLevel');
-  const sort = searchParams.get('sort');
-  const size = Number(searchParams.get('size'));
-  const page = Number(searchParams.get('page'));
-  const keyword = searchParams.get('keyword');
+  const locations = searchParams.get(PARAMS.LOCATIONS);
+  const experienceLevel = searchParams.get(PARAMS.EXPERIENCE_LEVEL);
+  const educationLevel = searchParams.get(PARAMS.EDUCATION_LEVEL);
+  const sort = searchParams.get(PARAMS.SORT);
+  const size = Number(searchParams.get(PARAMS.SIZE));
+  const page = Number(searchParams.get(PARAMS.PAGE));
+  const keyword = searchParams.get(PARAMS.KEYWORD);
 
   console.log(
     serviceType,
@@ -27,7 +29,7 @@ export async function GET(request: Request) {
     keyword,
   );
 
-  const RECRUITMENT = Array.from({ length: 40 }, (_, index) => {
+  const RECRUITMENT = Array.from({ length: 80 }, (_, index) => {
     return {
       id: index,
       serviceType: '산업기능요원',
@@ -43,7 +45,7 @@ export async function GET(request: Request) {
   });
 
   const data = {
-    recruitment: RECRUITMENT.slice(page * size, size * (page + 1)),
+    recruitment: RECRUITMENT.slice(0, size * (page + 1)),
     page: page,
     totalPages: Math.ceil(RECRUITMENT.length / size),
   };

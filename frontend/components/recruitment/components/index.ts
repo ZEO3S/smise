@@ -1,0 +1,1 @@
+export { RecruitmentList } from './recruitmentList';
