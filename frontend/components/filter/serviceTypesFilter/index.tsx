@@ -8,9 +8,9 @@ export default function ServiceTypesFilter() {
   const { pushRoute } = usePushRouteWithQueryParam();
 
   return (
-    <div className='pb-2'>
-      <div className='pb-2'>
-        <Text variant='semi-title' content='복무형태' />
+    <div className="pb-2">
+      <div className="pb-2">
+        <Text variant="semi-title" content="복무형태" />
       </div>
       <Radio>
         <ul>

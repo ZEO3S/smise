@@ -7,13 +7,13 @@ import { SortTypeSelect } from '@/components';
 
 export default function Home() {
   return (
-    <div className='flex flex-1 gap-10 px-40 py-10'>
+    <div className="flex flex-1 gap-10 px-40 py-10">
       <Filter />
-      <div className='flex flex-col flex-1'>
-        <div className='sticky top-16 pb-4 bg-white'>
+      <div className="flex flex-col flex-1">
+        <div className="sticky top-16 pb-4 bg-white">
           <SearchBar />
         </div>
-        <div className='flex justify-end sticky top-32 mb-2 bg-white'>
+        <div className="flex justify-end sticky top-32 mb-2 bg-white">
           <SortTypeSelect />
         </div>
         <Recruitment />

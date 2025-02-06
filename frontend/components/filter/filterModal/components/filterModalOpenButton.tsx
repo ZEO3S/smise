@@ -38,19 +38,19 @@ export function FilterModalOpenButton({ items, openModal }: Props) {
   const remainingCount = firstItem ? getRemainingCount(firstItem) : 0;
 
   return (
-    <Button className='flex gap-1 w-full py-2 hover:bg-default-color hover:bg-opacity-10' onClick={openModal}>
+    <Button className="flex gap-1 w-full py-2 hover:bg-default-color hover:bg-opacity-10" onClick={openModal}>
       <Text content={firstItem ? getItemText(firstItem) : '전체'} />
       {firstItem && (
         <>
-          <Text content='·' />
+          <Text content="·" />
           <Text content={getDetailText(firstItem)} />
           {remainingCount > 0 && <Text content={`외 ${remainingCount}`} />}
         </>
       )}
       <Image
-        className='ml-1 -rotate-90 select-none border border-default-color rounded'
+        className="ml-1 -rotate-90 select-none border border-default-color rounded"
         src={ArrowSVG}
-        alt='모달 열기 버튼'
+        alt="모달 열기 버튼"
       />
     </Button>
   );

@@ -8,9 +8,9 @@ export default function EducationLevelFilter() {
   const { pushRoute } = usePushRouteWithQueryParam();
 
   return (
-    <div className='pt-2 pb-4'>
-      <div className='py-2'>
-        <Text variant='semi-title' content='학력' />
+    <div className="pt-2 pb-4">
+      <div className="py-2">
+        <Text variant="semi-title" content="학력" />
       </div>
       <Select
         initialValue={{

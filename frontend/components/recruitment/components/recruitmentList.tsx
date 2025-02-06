@@ -10,7 +10,7 @@ interface Props {
 
 export function RecruitmentList({ recruitment }: Props) {
   return (
-    <ul className='flex-1'>
+    <ul className="flex-1">
       {recruitment?.map(
         ({
           id,
@@ -25,24 +25,24 @@ export function RecruitmentList({ recruitment }: Props) {
           href,
         }) => {
           return (
-            <li key={id} className='border-default-color border-b border-opacity-10 last:border-b-0'>
+            <li key={id} className="border-default-color border-b border-opacity-10 last:border-b-0">
               <Link
-                className='flex flex-col gap-3 px-4 py-5 hover:bg-default-color hover:bg-opacity-10'
+                className="flex flex-col gap-3 px-4 py-5 hover:bg-default-color hover:bg-opacity-10"
                 href={href}
-                target='_blank'
-                rel='noopener noreferrer'
+                target="_blank"
+                rel="noopener noreferrer"
                 replace
               >
-                <div className='flex justify-between items-center'>
-                  <div className='flex gap-2'>
+                <div className="flex justify-between items-center">
+                  <div className="flex gap-2">
                     <Badge content={serviceType} />
                     <Badge content={experienceLevel} />
                     <Badge content={educationLevel} />
                   </div>
                   <Text content={generateExpirationText(expirationDate)} />
                 </div>
-                <Text variant='middle-title' content={title} />
-                <div className='flex gap-3'>
+                <Text variant="middle-title" content={title} />
+                <div className="flex gap-3">
                   <Text content={company} />
                   <Text content={location} />
                   <Text content={salary} />

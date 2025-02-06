@@ -28,15 +28,15 @@ export default function ExperienceLevelFilter() {
   };
 
   return (
-    <div className='flex flex-col py-2'>
-      <div className='py-2'>
-        <Text variant='semi-title' content='경력' />
+    <div className="flex flex-col py-2">
+      <div className="py-2">
+        <Text variant="semi-title" content="경력" />
       </div>
-      <div className='flex gap-1'>
+      <div className="flex gap-1">
         {isRenderMinText && <Text content={generateExperienceLevelText(value.start)} />}
-        {isRenderTildeText && <Text content='~' />}
+        {isRenderTildeText && <Text content="~" />}
         {isRenderMaxText && <Text content={generateExperienceLevelText(value.end)} />}
-        {isRenderOverText && <Text content='이상' />}
+        {isRenderOverText && <Text content="이상" />}
       </div>
       <Slider
         value={value}

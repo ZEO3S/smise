@@ -49,9 +49,9 @@ export default function JobsFilter() {
 
   return (
     <FilterModal
-      title='직무'
+      title="직무"
       items={jobs}
-      noneSelectText='원하는 직무를 선택하고 적용을 눌러 확인하세요'
+      noneSelectText="원하는 직무를 선택하고 적용을 눌러 확인하세요"
       categories={allJobs.map(({ category }) => category)}
       selectedCategory={selectedCategory}
       selectedDetails={selectedJob ? selectedJob.details : []}

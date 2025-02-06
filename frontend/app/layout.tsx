@@ -22,7 +22,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang='ko'>
+    <html lang="ko">
       <body className={roboto.className}>
         <Layout>{children}</Layout>
       </body>

@@ -52,13 +52,13 @@ export default function FilterModal({
   };
 
   return (
-    <div className='py-2'>
-      <div className='py-2'>
-        <Text variant='semi-title' content={title} />
+    <div className="py-2">
+      <div className="py-2">
+        <Text variant="semi-title" content={title} />
       </div>
       <FilterModalOpenButton items={items} openModal={openModal} />
       <Modal title={title} openState={isOpen} onClose={closeModal}>
-        <div className='flex gap-2 h-[360px]'>
+        <div className="flex gap-2 h-[360px]">
           <Categories items={categories} on전체Click={onCategory전체Click} onItemClick={onCategoryItemClick} />
           <Details
             category={selectedCategory}
@@ -69,7 +69,7 @@ export default function FilterModal({
             onUnCheck={onDetailUncheck}
           />
         </div>
-        <div className='flex justify-between'>
+        <div className="flex justify-between">
           <ResetFilterButton onClick={onResetClick} />
           <ApplyFilterButton onClick={handleApplyButtonClick} />
         </div>

@@ -51,40 +51,40 @@ export function Slider({ value, min, max, step, onMouseUp, onStartChange, onEndC
   };
 
   return (
-    <div className='flex items-center relative w-full h-16 mt-3' ref={sliderRef}>
-      <div className='relative w-full h-[6px] rounded-sm bg-default-color bg-opacity-10' />
+    <div className="flex items-center relative w-full h-16 mt-3" ref={sliderRef}>
+      <div className="relative w-full h-[6px] rounded-sm bg-default-color bg-opacity-10" />
       <div
-        className='absolute h-[6px] bg-default-color'
+        className="absolute h-[6px] bg-default-color"
         style={{
           left: startControllerPosition,
           width: `calc(${endControllerPosition} - ${startControllerPosition})`,
         }}
       />
       <div
-        className='absolute h-5'
+        className="absolute h-5"
         style={{
           width: 'calc(100% - 20px)',
         }}
       >
         <div
-          className='absolute w-10 cursor-pointer'
+          className="absolute w-10 cursor-pointer"
           style={{
             left: startControllerPosition,
             zIndex: value.start === max ? 1 : 0,
           }}
           onMouseDown={(event) => handleMouseDown(event, 'start')}
         >
-          <div className='w-5 h-5 rounded-full bg-default-color border-2 border-white' />
+          <div className="w-5 h-5 rounded-full bg-default-color border-2 border-white" />
           {value.start !== max && <Text content={value.start === min ? '신입' : `${value.start}년`} />}
         </div>
         <div
-          className='absolute w-10 cursor-pointer'
+          className="absolute w-10 cursor-pointer"
           style={{
             left: endControllerPosition,
           }}
           onMouseDown={(event) => handleMouseDown(event, 'end')}
         >
-          <div className='w-5 h-5 rounded-full bg-green-800 border-2 border-white' />
+          <div className="w-5 h-5 rounded-full bg-green-800 border-2 border-white" />
           {value.end !== min && <Text content={`${value.end}년`} />}
         </div>
       </div>
