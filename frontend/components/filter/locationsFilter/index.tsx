@@ -28,9 +28,9 @@ export default function LocationsFilter() {
 
   return (
     <FilterModal
-      title='지역'
+      title="지역"
       items={locations}
-      noneSelectText='원하는 지역을 선택하고 적용을 눌러 확인하세요'
+      noneSelectText="원하는 지역을 선택하고 적용을 눌러 확인하세요"
       categories={Object.keys(LOCATIONS)}
       selectedCategory={selectedDistrict}
       selectedDetails={selectedDistrict ? [...LOCATIONS[selectedDistrict]] : []}

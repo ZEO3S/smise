@@ -16,7 +16,7 @@ export function SearchBar() {
     <Input
       value={value}
       buttonImage={MagnifyingGlassSVG}
-      placeholder='검색어를 입력해 주세요.'
+      placeholder="검색어를 입력해 주세요."
       onChange={onChangeInput}
       onEnter={updateKeyword}
       onClickButton={updateKeyword}

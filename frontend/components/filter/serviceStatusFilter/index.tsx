@@ -8,9 +8,9 @@ export default function ServiceStatusFilter() {
   const { pushRoute } = usePushRouteWithQueryParam();
 
   return (
-    <div className='py-2'>
-      <div className='py-2'>
-        <Text variant='semi-title' content='역종' />
+    <div className="py-2">
+      <div className="py-2">
+        <Text variant="semi-title" content="역종" />
       </div>
       <Radio>
         <ul>

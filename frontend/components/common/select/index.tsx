@@ -32,13 +32,13 @@ export function Select({ initialValue = null, children, onChange }: Props) {
   };
 
   return (
-    <fieldset className='relative' ref={ref} role='combobox' aria-controls='select-list' aria-expanded={isOpen}>
+    <fieldset className="relative" ref={ref} role="combobox" aria-controls="select-list" aria-expanded={isOpen}>
       <Button
-        className='flex justify-between gap-1 w-full p-2 border border-default-color border-opacity-10 select-none'
+        className="flex justify-between gap-1 w-full p-2 border border-default-color border-opacity-10 select-none"
         onClick={handleButtonClick}
       >
         {selectedOption?.label}
-        <Image className={isOpen ? 'rotate-180 ' : ''} src={ArrowSVG} alt='토글 버튼' />
+        <Image className={isOpen ? 'rotate-180 ' : ''} src={ArrowSVG} alt="토글 버튼" />
       </Button>
       <Options
         selectedOption={selectedOption}

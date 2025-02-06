@@ -63,13 +63,13 @@ export function Checkbox({
     >
       {boxPosition === 'left' ? (
         <>
-          <div className='relative'>
+          <div className="relative">
             {checked && (
-              <Image className='absolute w-5 h-5 rounded bg-default-color' src={WhiteCheckSVG} alt='체크' priority />
+              <Image className="absolute w-5 h-5 rounded bg-default-color" src={WhiteCheckSVG} alt="체크" priority />
             )}
             <input
-              className='w-5 h-5 border-default-color border rounded cursor-pointer appearance-none'
-              type='checkbox'
+              className="w-5 h-5 border-default-color border rounded cursor-pointer appearance-none"
+              type="checkbox"
               checked={checked}
               onChange={handleChangeChecked}
               name={value}
@@ -80,18 +80,18 @@ export function Checkbox({
       ) : (
         <>
           <Text variant={textVariant} content={label} />
-          <div className='relative'>
+          <div className="relative">
             {checked && (
               <Image
-                className='absolute right-0 w-5 h-5 rounded bg-green-800'
+                className="absolute right-0 w-5 h-5 rounded bg-green-800"
                 src={WhiteCheckSVG}
-                alt='체크'
+                alt="체크"
                 priority
               />
             )}
             <input
-              className='w-5 h-5 border-default-color border rounded cursor-pointer appearance-none'
-              type='checkbox'
+              className="w-5 h-5 border-default-color border rounded cursor-pointer appearance-none"
+              type="checkbox"
               checked={checked}
               onChange={handleChangeChecked}
               name={value}

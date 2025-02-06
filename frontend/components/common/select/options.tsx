@@ -39,7 +39,7 @@ export function Options({
       {isOpen && (
         <legend
           className={`absolute w-full bg-white z-20 ${openDirection === 'down' ? 'top-full' : 'bottom-full'}`}
-          role='listbox'
+          role="listbox"
         >
           {children}
         </legend>

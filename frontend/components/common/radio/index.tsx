@@ -9,7 +9,7 @@ export function Radio({ children }: ComponentPropsWithoutRef<'input'>) {
   return (
     <fieldset>
       <RadioContextProvider>
-        <legend className='w-full'>{children}</legend>
+        <legend className="w-full">{children}</legend>
       </RadioContextProvider>
     </fieldset>
   );

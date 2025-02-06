@@ -6,7 +6,7 @@ import { Main } from './main';
 
 export function Layout({ children }: PropsWithChildren) {
   return (
-    <div className='flex flex-col flex-1'>
+    <div className="flex flex-col flex-1">
       <Header />
       <Main>{children}</Main>
       <Footer />
