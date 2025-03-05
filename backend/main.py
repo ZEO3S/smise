@@ -22,14 +22,6 @@ app.add_middleware(
         allow_headers=["*"],
         )
 
-@app.middleware("http")
-async def redirect_http_to_https(request: Request, call_next):
-    if request.headers.get('x-forwarded-proto', 'http') == 'http':
-        url = request.url._url.replace("http://", "https://")
-        return RedirectResponse(url=url)
-    return await call_next(request)
-
-
 app.include_router(military_router)
 app.include_router(recruitment_router, prefix="/recruitment")
 app.include_router(job_router, prefix="/jobs")
@@ -39,7 +31,7 @@ def on_startup():
     conn()
     
 @app.get("/")
-async def home():
+def home():
     return RedirectResponse(url="/recruitment")
 
 if __name__ == '__main__':
