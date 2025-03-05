@@ -5,6 +5,7 @@ from data.connection import get_session
 from sqlmodel import select
 from sqlalchemy import and_, or_
 from typing_extensions import Annotated
+from datetime import datetime
 
 recruitment_router = APIRouter(
     tags=["Recruitment"]
@@ -26,6 +27,11 @@ async def retrieve_all_recruitments(
     ):
     
     query = select(Recruitment)
+    
+    # 만료된 채용 공고 안보이게
+    today = datetime.now()
+    today = today.strftime('%Y%m%d')
+    query = query.where(Recruitment.expirationDate >= today)
     
     # 필터 조건 추가
     if serviceType:
