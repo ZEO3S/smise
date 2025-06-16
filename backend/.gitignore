@@ -1,4 +1,10 @@
 **/apikey.txt
+backend/data/.env
+data/.env
 **/__pycache__/
 **/__pycache__/**
 **/.vscode/
+**/venv/
+backend/venv/**
+backend/venv/
+venv/

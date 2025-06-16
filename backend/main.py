@@ -3,7 +3,6 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from data.military_data import military_router
-from data.connection import conn
 from routers.recruitments import recruitment_router
 from routers.job import job_router
 
@@ -26,10 +25,6 @@ app.include_router(military_router)
 app.include_router(recruitment_router, prefix="/recruitment")
 app.include_router(job_router, prefix="/jobs")
 
-@app.on_event("startup")
-def on_startup():
-    conn()
-    
 @app.get("/")
 def home():
     return RedirectResponse(url="/recruitment")

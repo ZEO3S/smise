@@ -4,7 +4,8 @@ import asyncio
 from fastapi import Depends
 from models.recruitments import Recruitment
 from data.connection import get_session
-from routers.job import detail_to_job
+from data.classification import classification
+# from routers.job import detail_to_job
 from fastapi import APIRouter
 from sqlmodel import select
 
@@ -14,8 +15,8 @@ military_router = APIRouter(
 
 cached_recruitments = []
 
-def get_job(jobDetail: str):
-    return detail_to_job[jobDetail]
+# def get_job(jobDetail: str):
+#     return detail_to_job[jobDetail]
 
 def education_name_trans(education: str):
     education_name = {
@@ -32,8 +33,8 @@ def recruitment_name_casting(recruitment: dict) -> dict:
     temp['id'] = recruitment["cygonggoNo"]
     temp['serviceStatus'] = recruitment['yeokjongBrcdNm']
     temp['serviceType'] = recruitment['yowonGbcdNm']
-    temp["job"] = get_job(recruitment['eopjongGbcdNm'])
-    temp["jobDetail"] = recruitment['eopjongGbcdNm']
+    # temp["job"] = get_job(recruitment['eopjongGbcdNm'])
+    # temp["jobDetail"] = recruitment['eopjongGbcdNm']
     temp['experienceLevel'] = recruitment['gyeongryeokGbcdNm']
     temp['educationLevel'] = education_name_trans(recruitment['cjhakryeok'])
     temp['expirationDate'] = recruitment['magamDt']
@@ -42,6 +43,7 @@ def recruitment_name_casting(recruitment: dict) -> dict:
     temp['company'] = recruitment['eopcheNm']
     temp['location'] = recruitment['geunmujy']
     temp['salary'] = recruitment['gyjogeonCdNm']
+    temp['jobTask'] = recruitment.get('ddeopmuNm', None)
     temp['href'] = f'https://work.mma.go.kr/caisBYIS/search/cygonggogeomsaekView.do?cygonggo_no={recruitment["cygonggoNo"]}'
     
     return temp
@@ -60,14 +62,17 @@ async def fetch_recruitments():
             recruitments_data = data['response']['body']['items']['item']
             session = next(get_session())
             
-            for recruitment in recruitments_data:
-                r = Recruitment(**recruitment_name_casting(recruitment))
-                if session.get(Recruitment, r.id):
+            for i, recruitment in enumerate(recruitments_data):
+                recruitment_name_casted = recruitment_name_casting(recruitment)
+                if session.get(Recruitment, recruitment_name_casted['id']):
                     # 이미 데이터베이스에 존재하면 건너뛰기
                     continue
-                session.add(r)
-                session.commit()
-                session.refresh(r)
+                recruitment_classified = classification(recruitment_name_casted)
+                if recruitment_classified:
+                    r = Recruitment(**recruitment_classified)
+                    session.add(r)
+                    session.commit()
+                    session.refresh(r)
         except KeyError as k:
             print(k)
             print("Unexpected response structure from API")

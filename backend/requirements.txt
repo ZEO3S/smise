@@ -24,3 +24,8 @@ typing_extensions
 urllib3
 uvicorn
 xmltodict
+boto3
+python-dotenv
+pymysql
+openai
+pandas

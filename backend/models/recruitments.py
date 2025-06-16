@@ -1,7 +1,9 @@
 from typing import Optional
+from datetime import date
 from sqlmodel import SQLModel, Field
 
 class Recruitment(SQLModel, table=True):
+    __tablename__ = "Recruitment"
     id: int = Field(default=None, primary_key=True)
     serviceType: str
     serviceStatus: str
@@ -9,8 +11,8 @@ class Recruitment(SQLModel, table=True):
     jobDetail: str
     experienceLevel: str
     educationLevel: str
-    expirationDate: str
-    updatedDate: str
+    expirationDate: date
+    updatedDate: date
     title: str
     company: str
     location: str
